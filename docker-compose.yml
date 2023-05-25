@@ -2,7 +2,7 @@ version: '3'
 services:
   postgres:
     image: postgres:latest
-    container_name: sm_postgres
+    container_name: social_media_postgres
     ports:
       - '6500:5432'
     volumes:

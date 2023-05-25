@@ -39,4 +39,4 @@ const Logger = (service: string) => {
     });
 }
 
-export default Logger("Mini Stack Overflow");
+export default Logger("Social Media REST API");

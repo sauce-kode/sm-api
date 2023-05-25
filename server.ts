@@ -1,6 +1,7 @@
 require("dotenv").config();
 import express, { Request, Response } from "express";
 import morgan from "morgan";
+import Logger from "./src/libraries/logger";
 
 const app = express();
 
@@ -22,5 +23,5 @@ app.all("*", (req: Request, res: Response) => {
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, async () => {
-  console.log("🚀Server started Successfully");
+  Logger.info("🚀 Server started Successfully");
 });

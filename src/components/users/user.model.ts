@@ -6,6 +6,11 @@ const UserModel = sequelize.define("users", {
         defaultValue: DataTypes.UUID,
         primaryKey: true
     },
+    username: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
+    },
     email: {
         type: DataTypes.STRING,
         unique: true,
