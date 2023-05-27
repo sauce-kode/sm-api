@@ -1,7 +1,7 @@
-import UserModel from "./user.model";
+import UserModel, { UserInput } from "./user.model";
 
 class UserRepository {
-    async create(payload: any) {
+    async create(payload: UserInput) {
         try {
             return await UserModel.create(payload)
         } catch (error:any) {
