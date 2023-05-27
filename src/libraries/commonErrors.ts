@@ -16,4 +16,6 @@ export enum CommonErrors {
     USER_EXISTS = "A user with this email already exists",
 
     UNSUCCESSFUL_SIGNUP = "Could not register user",
+
+    INVALID_USER='User does not exist'
 }

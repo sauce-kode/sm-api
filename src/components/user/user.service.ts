@@ -22,14 +22,28 @@ class UserService {
         }
     }
 
-    async findUserByEmail(email:string) {
+    async findUserByEmail(email:string) : Promise<UserOutput | AppError | null> {
         try {
-            const response = userRepository.findUserBy(email)
+            const response = userRepository.findUserByEmail(email)
             return response
         } catch (error:any) {
             handler.reportError(error)
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
         }
+    }
+
+    async findUserByUsername(username: string) : Promise<UserOutput | AppError | null>  {
+        try {
+            const response = userRepository.findUserByUsername(username)
+            return response
+        } catch (error:any) {
+            handler.reportError(error)
+            return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
+        }
+    }
+
+    async comparePasswords(plainPassword: string, hashedPassword: string) : Promise<boolean> {
+        return Utils.compareTexts(plainPassword, hashedPassword)
     }
 
 }

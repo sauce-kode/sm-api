@@ -34,3 +34,8 @@ app.listen(PORT, async () => {
     Logger.info("🚀 Database synced Successfully")
   })
 })
+
+process.on('unhandledRejection', reason => {
+  console.error("REASON______________")
+  throw reason;
+});
