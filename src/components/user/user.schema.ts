@@ -12,9 +12,11 @@ export const createUserSchema = z.object({
             required_error: "E-mail address is required",
         })
         .email("E-mail address appears to be invalid"),
-    password: z.string({
-      required_error: "Enter a secure password",
-    }),
+    password: z
+        .string({
+            required_error: "Enter a secure password",
+        })
+        .min(6, "Password cannot be less than 6 characters"),
   }),
 });
 
@@ -23,5 +25,5 @@ export const filterQuery = z.object({
   page: z.number().default(10),
 });
 
-export type FilterQueryInput = z.TypeOf<typeof filterQuery>;
-export type CreateNoteInput = z.TypeOf<typeof createUserSchema>["body"];
+export type FilterQueryRequest = z.TypeOf<typeof filterQuery>;
+export type CreateUserRequest = z.TypeOf<typeof createUserSchema>["body"];

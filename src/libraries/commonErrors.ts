@@ -11,5 +11,9 @@ export enum CommonErrors {
 
     INVALID_TOKEN_TYPE = "Invalid Token Type",
 
-    UNAUTHORIZED = "User is not authorized to access resource"
+    UNAUTHORIZED = "User is not authorized to access resource",
+
+    USER_EXISTS = "A user with this email already exists",
+
+    UNSUCCESSFUL_SIGNUP = "Could not register user",
 }
