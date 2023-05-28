@@ -1,7 +1,7 @@
-import PostModel from "./post.model";
+import PostModel, { PostInput, PostOutput } from "./post.model";
 
-class UserRepository {
-    async create(payload: any) {
+class PostRepository {
+    async create(payload: PostInput) : Promise<PostOutput> {
         try {
             return await PostModel.create(payload)
         } catch (error:any) {
@@ -10,4 +10,4 @@ class UserRepository {
     }
 }
 
-export default new UserRepository()
+export default new PostRepository()
