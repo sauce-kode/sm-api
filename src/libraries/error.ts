@@ -19,7 +19,7 @@ export default class AppError extends Error {
       this.httpCode = httpCode;
       this.description = description;
   
-      Error.captureStackTrace(this);
+      Error.captureStackTrace(this, this.constructor);
   }
 }
 

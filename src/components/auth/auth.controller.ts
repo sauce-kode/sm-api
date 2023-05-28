@@ -36,7 +36,7 @@ class AuthController {
             const passwordMatches = await userService.comparePasswords(payload.password, response.password)
 
             if (passwordMatches) {
-                const jwtPayload = Token.signJwt({sub: response}, {expiresIn: `${customConfig.accessTokenExpiresIn}`})
+                const jwtPayload = Token.signJwt({sub: response.id}, {expiresIn: `${customConfig.accessTokenExpiresIn}m`})
                 const data = {
                     'user': mapper.userResource(response),
                     'token': jwtPayload

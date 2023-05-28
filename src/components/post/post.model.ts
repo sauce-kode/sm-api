@@ -15,7 +15,7 @@ interface PostAttributes {
     deleted_at?: Date
 }
 
-export interface PostInput extends Optional<PostAttributes, 'id'> {}
+export interface PostInput extends Optional<PostAttributes, 'id' | 'userId' | 'slug' | 'likeCount' | 'commentCount'> {}
 export interface PostOutput extends Required<PostAttributes> {}
 
 class Post extends Model<PostAttributes, PostInput> implements PostAttributes {
@@ -41,6 +41,7 @@ Post.init({
     },
     userId: {
         type: DataTypes.UUID,
+        allowNull: false,
         references: {
             model: User,
             key: 'id'
@@ -51,20 +52,20 @@ Post.init({
         allowNull: false,
     },
     content: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT(),
         allowNull: true
     },
     slug: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: true
     },
     likeCount: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         defaultValue: 0
     },
     commentCount: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         defaultValue: 0
     }
 }, {
@@ -75,8 +76,8 @@ Post.init({
     deletedAt: 'deleted_at',
     hooks: {
         afterCreate: (post, options) => {
-            console.log("POST >>>", post)
-            console.log("OPTIONS >>>>>", options)
+            // console.log("POST >>>", post)
+            // console.log("OPTIONS >>>>>", options)
         } 
     }
 })
