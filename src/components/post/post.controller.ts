@@ -13,6 +13,10 @@ class AuthController {
 
         return new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, mapper.postResource(result))
     }
+
+    async like(postId: string) {
+        
+    }
 }
 
 export default new AuthController()

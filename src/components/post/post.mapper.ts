@@ -1,7 +1,20 @@
-import { Post } from "./post.interface"
 import { PostOutput } from "./post.model"
 
-export const postResource = (post: PostOutput) : Post => {
+interface PostResponse {
+    id: string,
+    userId: string,
+    title: string,
+    content: string,
+    slug: string,
+    likeCount: number,
+    commentCount: number,
+    
+    created_at: Date,
+    updated_at: Date,
+    deleted_at?: Date
+}
+
+export const postResource = (post: PostOutput) : PostResponse => {
     return {
         id: post.id,
         userId: post.userId,

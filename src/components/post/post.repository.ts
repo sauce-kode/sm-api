@@ -4,7 +4,7 @@ class PostRepository {
     async create(payload: PostInput) : Promise<PostOutput> {
         try {
             return await PostModel.create(payload)
-        } catch (error:any) {
+        } catch (error) {
             throw error
         }
     }

@@ -6,7 +6,6 @@ import postRepository from "./post.repository";
 class PostService {
 
     async createPost(post: PostInput) : Promise<PostOutput | AppError> {
-
         try {
             return await postRepository.create(post)
         } catch(error:any) {

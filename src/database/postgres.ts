@@ -1,17 +1,19 @@
 require("dotenv").config();
 import { Sequelize, DataTypes } from "sequelize";
-import Logger from "../libraries/logger";
+import logger from "../libraries/logger";
 import customConfig from "../config/default";
 
 const POSTGRES_URL = customConfig.dbUri;
-const sequelize = new Sequelize(POSTGRES_URL);
+const sequelize = new Sequelize(POSTGRES_URL, {
+  logging: false
+});
 
 async function connectDB() {
   try {
     await sequelize.authenticate();
-    Logger.info("✅ Database Connection has been successfully established.");
+    logger.info("✅ Database Connection has been successfully established.");
   } catch (error) {
-    Logger.error(`Unable to connect to the database: ${error}`);
+    logger.error(`Unable to connect to the database: ${error}`);
   }
 }
 

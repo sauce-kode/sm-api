@@ -1,7 +1,16 @@
-import { User } from "./user.interface";
 import { UserOutput } from "./user.model";
 
-export const userResource = (user: UserOutput) : User => {
+interface UserResponse {
+    id: string,
+    username: string,
+    email: string,
+    password?: string,
+    created_at: Date,
+    updated_at: Date,
+    deleted_at?: Date
+}
+
+export const userResource = (user: UserOutput) : UserResponse => {
     return {
         id: user.id,
         username: user.username,

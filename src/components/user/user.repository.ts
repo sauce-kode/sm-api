@@ -4,7 +4,7 @@ class UserRepository {
     async create(payload: UserInput) {
         try {
             return await UserModel.create(payload)
-        } catch (error:any) {
+        } catch (error) {
             throw error
         }
     }
@@ -12,7 +12,7 @@ class UserRepository {
     async findUserByEmail(email: string) {
         try {
             return await UserModel.findOne({where: {email: email}})
-        } catch (error:any) {
+        } catch (error) {
             throw error
         }
     }
@@ -20,7 +20,7 @@ class UserRepository {
     async findUserByUsername(username: string) {
         try {
             return await UserModel.findOne({where: {username: username}})
-        } catch (error:any) {
+        } catch (error) {
             throw error
         }
     }
