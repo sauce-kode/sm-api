@@ -11,6 +11,14 @@ class FollowerService {
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
         }
     }
+
+    async deleteFollower(data: FollowerUserInput) : Promise<boolean | AppError> {
+        try {
+            return await followerUsersRepository.delete({userId: data.userId, followingId: data.followingId})
+        } catch(error:any) {
+            return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
+        }
+    }
 }
 
 export default new FollowerService()

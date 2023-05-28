@@ -14,6 +14,11 @@ router
         const result = await followerController.create(payload)
         handleResponse(res, result)
     })
-    // .delete()
+    .delete(validate(followUserSchema),   async (req: Request<{}, {}, FollowUserRequest>, res: Response) => {
+        const payload : FollowUserRequest = req.body
+
+        const result = await followerController.delete(payload)
+        handleResponse(res, result)
+    })
 
 export default router

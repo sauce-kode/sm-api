@@ -9,7 +9,15 @@ class UserController {
 
     async create(payload: FollowerUserInput) : Promise<IResponse> {
         const result = await followerService.createFollower(payload)
-        
+
+        if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.DEFAULT_ERROR)
+
+        return new SuccessResponse(Status.SUCCESS, HttpStatusCode.OK, {})
+    }
+
+    async delete(payload: FollowerUserInput) : Promise<IResponse> {
+        const result = await followerService.deleteFollower(payload)
+
         if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.DEFAULT_ERROR)
 
         return new SuccessResponse(Status.SUCCESS, HttpStatusCode.OK, {})
