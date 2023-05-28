@@ -1,5 +1,5 @@
 import { HttpStatusCode } from "./httpStatusCodes";
-import Logger from "./logger";
+import logger from "./logger";
 
 export default class AppError extends Error {
   public readonly name: string;
@@ -25,7 +25,7 @@ export default class AppError extends Error {
 
 class ErrorHandler {
   public async reportError(err: Error): Promise<void> {
-    await Logger.error(err);
+    logger.error(err);
     // send mail too maybe
   }
 }

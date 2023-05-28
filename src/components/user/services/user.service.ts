@@ -1,9 +1,9 @@
-import { CommonErrors } from "../../libraries/commonErrors";
-import AppError, { handler } from "../../libraries/error";
-import { HttpStatusCode } from "../../libraries/httpStatusCodes";
-import Utils from "../../libraries/utils";
-import { UserInput, UserOutput } from "./user.model";
-import userRepository from "./user.repository";
+import { CommonErrors } from "../../../libraries/commonErrors";
+import AppError, { handler } from "../../../libraries/error";
+import { HttpStatusCode } from "../../../libraries/httpStatusCodes";
+import Utils from "../../../libraries/utils";
+import { UserInput, UserOutput } from "../models/user.model";
+import userRepository from "../repositories/user.repository";
 
 class UserService {
 
@@ -40,6 +40,10 @@ class UserService {
             handler.reportError(error)
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
         }
+    }
+
+    async followUser() {
+        
     }
 
     async comparePasswords(plainPassword: string, hashedPassword: string) : Promise<boolean> {

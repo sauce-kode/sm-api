@@ -1,5 +1,4 @@
-import path from 'path';
-require('dotenv').config({ path: path.join(__dirname, '../../.env') });
+require('dotenv').config();
 
 const customConfig: {
   port: number;

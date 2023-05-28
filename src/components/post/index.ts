@@ -4,9 +4,9 @@ import { handleResponse } from '..'
 import postController from './post.controller'
 import { CreatePostRequest, CreatePostSchema } from './post.schema'
 
-const authRouter = express.Router()
+const router = express.Router()
 
-authRouter
+router
     .route("/")
     .post(validate(CreatePostSchema), async (req: Request<{}, {}, CreatePostRequest>, res: Response) => {
         const payload : CreatePostRequest = req.body
@@ -15,4 +15,4 @@ authRouter
         handleResponse(res, result)
     })
 
-export default authRouter
+export default router

@@ -1,4 +1,7 @@
 export enum CommonErrors {
+
+    DEFAULT_ERROR = "Something went wrong, try again later",
+
     SERVER_ERROR = "A server error occurred",
   
     BAD_PARAMETERS = "Ensure you are passing the right parameters",

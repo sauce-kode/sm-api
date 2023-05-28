@@ -1,5 +1,5 @@
 import { Model, Optional } from "sequelize"
-import {sequelize, DataTypes} from "../../database/postgres"
+import { DataTypes, sequelizeConnection } from "../../../database/postgres"
 
 interface UserAttributes {
     id: string,
@@ -47,7 +47,8 @@ User.init({
         allowNull: false
     },
 }, {
-    sequelize,
+    sequelize: sequelizeConnection,
+    tableName: "users",
     paranoid: true, //set soft deletes for data
     createdAt: 'created_at',
     updatedAt: 'updated_at',

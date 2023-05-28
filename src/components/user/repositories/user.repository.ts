@@ -1,10 +1,11 @@
-import UserModel, { UserInput } from "./user.model";
+import UserModel, { UserInput } from "../models/user.model";
 
 class UserRepository {
     async create(payload: UserInput) {
         try {
             return await UserModel.create(payload)
         } catch (error) {
+            console.error(error)
             throw error
         }
     }
@@ -24,7 +25,6 @@ class UserRepository {
             throw error
         }
     }
-
 }
 
 export default new UserRepository()

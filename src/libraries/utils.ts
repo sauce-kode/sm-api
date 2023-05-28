@@ -2,13 +2,12 @@ import bcrypt from "bcrypt";
 import AppError, { handler } from "./error";
 import { HttpStatusCode } from "./httpStatusCodes";
 import { CommonErrors } from "./commonErrors";
-import customConfig from "../config/default";
 
 export default class Utils {
 
     static async generateSalt() {
         try {
-            return await bcrypt.genSalt(customConfig.hashingRounds);
+            return await bcrypt.genSalt(10);
         } catch (error:any) {
             handler.reportError(error);
             throw new AppError("Salt Error", HttpStatusCode.INTERNAL_SERVER_ERROR, CommonErrors.SERVER_ERROR);

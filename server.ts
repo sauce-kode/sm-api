@@ -1,11 +1,13 @@
 require("dotenv").config()
 import express, { Request, Response, Application } from "express"
 import morgan from "morgan"
-import Logger from "./src/libraries/logger"
 import appRouter from "./src/components"
-import { connectDB, sequelize } from "./src/database/postgres"
+import { connectDB, sequelizeConnection } from "./src/database/postgres"
+import logger from "./src/libraries/logger"
+import customConfig from "./src/config/default"
 
 const app: Application = express()
+const PORT = customConfig.port
 
 app.use(express.json({limit: "10kb"}))
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"))
@@ -26,16 +28,15 @@ app.all("*", (req: Request, res: Response) => {
   })
 })
 
-const PORT = process.env.PORT || 8000
 app.listen(PORT, async () => {
-  Logger.info("🚀 Server started Successfully")
+  logger.info("🚀 Server started Successfully")
   await connectDB()
-  sequelize.sync({force: false}).then(() => {
-    Logger.info("🚀 Database synced Successfully")
+  sequelizeConnection.sync({force: false}).then(() => {
+    logger.info("🚀 Database synced Successfully")
   })
 })
 
-process.on('unhandledRejection', reason => {
-  console.error("REASON______________")
+process.on('uncaughtException', reason => {
+  logger.info(`An error occured ${reason}`)
   throw reason;
 });

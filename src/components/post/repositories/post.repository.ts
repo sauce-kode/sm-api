@@ -1,4 +1,4 @@
-import PostModel, { PostInput, PostOutput } from "./post.model";
+import PostModel, { PostInput, PostOutput } from "../models/post.model";
 
 class PostRepository {
     async create(payload: PostInput) : Promise<PostOutput> {

@@ -1,0 +1,10 @@
+import { z } from "zod";
+
+export const followUserSchema = z.object({
+  body: z.object({
+    followingId: z
+        .string()
+  })
+});
+
+export type FollowUserRequest = z.TypeOf<typeof followUserSchema>["body"];

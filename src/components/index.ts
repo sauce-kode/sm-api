@@ -3,6 +3,8 @@ import { IResponse } from "../libraries/IResponse";
 
 import auth from "./auth"
 import post from "./post"
+import user from "./user"
+
 import requireAuthentication from "../middleware/requireAuthentication";
 
 const router = express.Router()
@@ -18,5 +20,6 @@ router.use("/auth", auth)
 router.use(requireAuthentication)
 
 router.use("/post", post)
+router.use("/user", user)
 
 export default router

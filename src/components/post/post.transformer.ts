@@ -1,4 +1,4 @@
-import { PostOutput } from "./post.model"
+import { PostOutput } from "./models/post.model"
 
 interface PostResponse {
     id: string,

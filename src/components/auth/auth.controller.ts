@@ -1,8 +1,8 @@
-import userService from "./../user/user.service"
+import userService from "../user/services/user.service"
 import { ErrorResponse, FailResponse, IResponse, Status, SuccessResponse } from "../../libraries/IResponse"
 import { CommonErrors } from "../../libraries/commonErrors"
 import AppError from "../../libraries/error"
-import * as mapper from "../user/user.transformer"
+import * as transformer from "../user/user.transformer"
 import { HttpStatusCode } from "../../libraries/httpStatusCodes"
 import Token from "../../libraries/token"
 import customConfig from "../../config/default"
@@ -17,7 +17,7 @@ class AuthController {
         const result = await userService.createUser(payload)
         if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.UNSUCCESSFUL_SIGNUP)
 
-        return new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, mapper.userResource(result))
+        return new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, transformer.userResource(result))
     }
 
     async login(payload: UserLoginRequest) : Promise<IResponse>  {
@@ -36,9 +36,9 @@ class AuthController {
             const passwordMatches = await userService.comparePasswords(payload.password, response.password)
 
             if (passwordMatches) {
-                const jwtPayload = Token.signJwt({sub: response.id}, {expiresIn: `${customConfig.accessTokenExpiresIn}m`})
+                const jwtPayload = Token.signJwt({sub: response.id})
                 const data = {
-                    'user': mapper.userResource(response),
+                    'user': transformer.userResource(response),
                     'token': jwtPayload
                 }
                 return new SuccessResponse(Status.SUCCESS, HttpStatusCode.OK, data)
