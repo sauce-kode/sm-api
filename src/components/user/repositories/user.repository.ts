@@ -10,17 +10,9 @@ class UserRepository {
         }
     }
 
-    async findUserByEmail(email: string) {
+    async findUser(where: any) {
         try {
-            return await UserModel.findOne({where: {email: email}})
-        } catch (error) {
-            throw error
-        }
-    }
-
-    async findUserByUsername(username: string) {
-        try {
-            return await UserModel.findOne({where: {username: username}})
+            return await UserModel.findOne({where: where})
         } catch (error) {
             throw error
         }

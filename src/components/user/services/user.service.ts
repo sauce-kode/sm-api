@@ -24,8 +24,7 @@ class UserService {
 
     async findUserByEmail(email:string) : Promise<UserOutput | AppError | null> {
         try {
-            const response = userRepository.findUserByEmail(email)
-            return response
+            return userRepository.findUser({email: email})
         } catch (error:any) {
             handler.reportError(error)
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
@@ -34,8 +33,7 @@ class UserService {
 
     async findUserByUsername(username: string) : Promise<UserOutput | AppError | null>  {
         try {
-            const response = userRepository.findUserByUsername(username)
-            return response
+            return userRepository.findUser({username: username})
         } catch (error:any) {
             handler.reportError(error)
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
