@@ -20,5 +20,8 @@ export enum CommonErrors {
 
     UNSUCCESSFUL_SIGNUP = "Could not register user",
 
-    INVALID_USER='User does not exist'
+    INVALID_USER='User does not exist',
+
+    INVALID_POST = "Post does not exist"
+
 }

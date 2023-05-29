@@ -8,6 +8,15 @@ class PostRepository {
             throw error
         }
     }
+
+    async findPost(where: any) {
+        try {
+            return await PostModel.findOne({where: where})
+        } catch (error) {
+            throw error
+        }
+    }
+
 }
 
 export default new PostRepository()

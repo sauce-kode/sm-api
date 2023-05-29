@@ -56,4 +56,4 @@ PostLike.init({
 PostLike.belongsTo(User)
 PostLike.belongsTo(Post)
 
-export default Post
+export default PostLike

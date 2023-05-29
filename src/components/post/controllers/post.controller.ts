@@ -2,7 +2,7 @@ import postService from "../services/post.service"
 import { ErrorResponse, IResponse, Status, SuccessResponse } from "../../../libraries/IResponse"
 import { CommonErrors } from "../../../libraries/commonErrors"
 import AppError from "../../../libraries/error"
-import * as transformer from "../post.transformer"
+import * as transformer from "../transformers/post.transformer"
 import { HttpStatusCode } from "../../../libraries/httpStatusCodes"
 import { CreatePostRequest } from "../schemas/post.schema"
 

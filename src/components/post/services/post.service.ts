@@ -17,6 +17,15 @@ class PostService {
         }
     }
 
+    async findPost(id:string) : Promise<PostOutput | AppError | null> {
+        try {
+            return postRepository.findPost({id: id})
+        } catch (error:any) {
+            handler.reportError(error)
+            return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
+        }
+    }
+
 }
 
 export default new PostService()

@@ -44,7 +44,7 @@ class AuthController {
                 return new SuccessResponse(Status.SUCCESS, HttpStatusCode.OK, data)
             }
         }
-        return new FailResponse(Status.FAIL, {}, HttpStatusCode.BAD_REQUEST, CommonErrors.INVALID_USER, );
+        return new FailResponse(Status.FAIL, {}, HttpStatusCode.BAD_REQUEST, CommonErrors.INVALID_USER);
     }
 
     private async getLoginField(text:string) : Promise<'email' | 'username'> {

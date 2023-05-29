@@ -6,7 +6,7 @@ import Post from "./post.model"
 interface CommentAttributes {
     id: string,
     userId?: string,
-    postId: string,
+    postId?: string,
     comment: string,
     parentCommentId?: string,
     created_at?: Date,
