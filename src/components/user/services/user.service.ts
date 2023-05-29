@@ -40,10 +40,6 @@ class UserService {
         }
     }
 
-    async followUser() {
-        
-    }
-
     async comparePasswords(plainPassword: string, hashedPassword: string) : Promise<boolean> {
         return Utils.compareTexts(plainPassword, hashedPassword)
     }
