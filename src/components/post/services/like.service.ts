@@ -5,9 +5,13 @@ import likeRepository from "../repositories/like.repository";
 
 class LikeService {
 
-    async createLike(like: LikeInput) {
+    async createLike(userId: string, postId: string) {
         try {
-            return await likeRepository.create(like)
+            const likePayload : LikeInput = {
+                userId: userId,
+                postId: postId
+            }
+            return await likeRepository.create(likePayload)
         } catch(error:any) {
             handler.reportError(error)
             if (error instanceof AppError) {

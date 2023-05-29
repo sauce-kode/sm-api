@@ -23,7 +23,7 @@ export default class Token {
 
     static verifyJwt <T>(
         token: string,
-    ) : T | null {
+    ) : T {
         try {
             const publicKey = fs.readFileSync(path.join(__dirname, './../../public.key'))
             const verifyOptions : VerifyOptions = {
@@ -31,7 +31,7 @@ export default class Token {
             }
             return jwt.verify(token, publicKey, verifyOptions) as T;
         } catch (error) {
-            return null;
+            throw error
         }
     }
 

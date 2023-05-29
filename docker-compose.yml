@@ -2,12 +2,20 @@ version: '3'
 services:
   db:
     image: postgres:latest
-    container_name: social_media
+    container_name: socialmedia_postgres
     ports:
       - '6500:5432'
     volumes:
       - postgresDB:/data/postgres
     env_file:
       - ./.env.docker
+  redis:
+    image: redis:alpine
+    container_name: socialmedia_redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redisDB:/data
 volumes:
   postgresDB:
+  redisDB:

@@ -1,4 +1,4 @@
-import UserModel, { UserInput } from "../models/user.model";
+import UserModel, { UserInput, UserOutput } from "../models/user.model";
 
 class UserRepository {
     async create(payload: UserInput) {
@@ -10,7 +10,17 @@ class UserRepository {
         }
     }
 
-    async findUser(where: any) {
+    async findUserById(id: string) : Promise<UserOutput> {
+        const user = await UserModel.findByPk(id)
+
+        if (!user) {
+            throw new Error('user not found')
+        }
+
+        return user
+    }
+
+    async findUserBy(where: any) : Promise<UserOutput | null> {
         try {
             return await UserModel.findOne({where: where})
         } catch (error) {

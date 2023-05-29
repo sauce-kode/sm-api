@@ -17,9 +17,22 @@ class PostService {
         }
     }
 
+    async incrementCommentCount(postId: string) : Promise<PostOutput | AppError> {
+        try {
+            const post : PostOutput = await postRepository.findById(postId)
+            const newCommentCount = post.commentCount + 1
+            post.commentCount = newCommentCount
+
+            return await postRepository.update(postId, post)
+        } catch (error:any) {
+            handler.reportError(error)
+            return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
+        }
+    }
+
     async findPost(id:string) : Promise<PostOutput | AppError | null> {
         try {
-            return postRepository.findPost({id: id})
+            return postRepository.findById(id)
         } catch (error:any) {
             handler.reportError(error)
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)

@@ -2,19 +2,28 @@ import PostModel, { PostInput, PostOutput } from "../models/post.model";
 
 class PostRepository {
     async create(payload: PostInput) : Promise<PostOutput> {
-        try {
-            return await PostModel.create(payload)
-        } catch (error) {
-            throw error
-        }
+        return await PostModel.create(payload)
     }
 
-    async findPost(where: any) {
-        try {
-            return await PostModel.findOne({where: where})
-        } catch (error) {
-            throw error
+    async update(id: string, payload: Partial<PostInput>) : Promise<PostOutput> {
+        const post = await PostModel.findByPk(id)
+
+        if (!post) {
+            throw  new Error('not found')
         }
+
+        const updatedPost = await post.update(payload)
+        return updatedPost
+    }
+
+    async findById(id: string) : Promise<PostOutput> {
+        const post = await PostModel.findByPk(id)
+
+        if (!post) {
+            throw  new Error('Post not found')
+        }
+
+        return post
     }
 
 }

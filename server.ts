@@ -31,6 +31,7 @@ app.all("*", (req: Request, res: Response) => {
 app.listen(PORT, async () => {
   logger.info("🚀 Server started Successfully")
   await connectDB()
+  await 
   sequelizeConnection.sync({force: false}).then(() => {
     logger.info("🚀 Database synced Successfully")
   })

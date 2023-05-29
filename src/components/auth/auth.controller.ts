@@ -4,10 +4,9 @@ import { CommonErrors } from "../../libraries/commonErrors"
 import AppError from "../../libraries/error"
 import * as transformer from "../user/user.transformer"
 import { HttpStatusCode } from "../../libraries/httpStatusCodes"
-import Token from "../../libraries/token"
-import customConfig from "../../config/default"
 import { UserLoginRequest, UserRegistrationRequest } from "./auth.schema"
 import Utils from "../../libraries/utils"
+import authService from "./auth.service"
 
 class AuthController {
     async register(payload : UserRegistrationRequest) : Promise<IResponse> {
@@ -36,7 +35,7 @@ class AuthController {
             const passwordMatches = await userService.comparePasswords(payload.password, response.password)
 
             if (passwordMatches) {
-                const jwtPayload = Token.signJwt({sub: response.id})
+                const jwtPayload = await authService.signToken(response)
                 const data = {
                     'user': transformer.userResource(response),
                     'token': jwtPayload

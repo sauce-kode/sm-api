@@ -6,7 +6,7 @@ import Post from "./post.model"
 interface CommentAttributes {
     id: string,
     userId?: string,
-    postId?: string,
+    postId: string,
     comment: string,
     parentCommentId?: string,
     created_at?: Date,
@@ -69,7 +69,11 @@ Comment.init({
     updatedAt: 'updated_at',
 })
 
-Comment.belongsTo(User)
-Comment.belongsTo(Post)
+Comment.belongsTo(User, {
+    foreignKey: 'userId'
+})
+Comment.belongsTo(Post, {
+    foreignKey: 'postId'
+})
 
 export default Comment

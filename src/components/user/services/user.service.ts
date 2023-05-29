@@ -22,9 +22,18 @@ class UserService {
         }
     }
 
+    async findUserById(id: string) : Promise<UserOutput | AppError> {
+        try {
+            return userRepository.findUserById(id)
+        } catch (error:any) {
+            handler.reportError(error)
+            return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
+        }
+    }
+
     async findUserByEmail(email:string) : Promise<UserOutput | AppError | null> {
         try {
-            return userRepository.findUser({email: email})
+            return userRepository.findUserBy({email: email})
         } catch (error:any) {
             handler.reportError(error)
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
@@ -33,7 +42,7 @@ class UserService {
 
     async findUserByUsername(username: string) : Promise<UserOutput | AppError | null>  {
         try {
-            return userRepository.findUser({username: username})
+            return userRepository.findUserBy({username: username})
         } catch (error:any) {
             handler.reportError(error)
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)

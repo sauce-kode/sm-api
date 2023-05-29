@@ -83,6 +83,8 @@ Post.init({
     }
 })
 
-Post.belongsTo(User)
+Post.belongsTo(User, {
+    foreignKey: 'userId'
+})
 
 export default Post

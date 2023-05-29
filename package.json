@@ -26,6 +26,7 @@
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.11.0",
     "pg-hstore": "^2.3.4",
+    "redis": "^4.6.6",
     "sequelize": "^6.31.1",
     "winston": "^3.8.2",
     "zod": "^3.21.4"

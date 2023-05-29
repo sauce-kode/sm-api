@@ -10,7 +10,7 @@ interface FollowerUsersAttributes {
     updated_at?: Date,
 }
 
-export interface FollowerUserInput extends Optional<FollowerUsersAttributes, 'id' | 'userId'> {}
+export interface FollowerUserInput extends Optional<FollowerUsersAttributes, 'id'> {}
 export interface FollowerUserOutput extends Required<FollowerUsersAttributes> {}
 
 class FollowerUsers extends Model<FollowerUsersAttributes, FollowerUserInput> implements FollowerUsersAttributes {

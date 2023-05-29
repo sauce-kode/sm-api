@@ -1,14 +1,16 @@
+import { sequelizeConnection } from "../../../database/postgres";
 import AppError, { handler } from "../../../libraries/error";
 import { HttpStatusCode } from "../../../libraries/httpStatusCodes";
 import { CommentInput, CommentOutput } from "../models/comment.model";
 import commentRepository from "../repositories/comment.repository";
+import postService from "./post.service";
 
 class CommentService {
 
-    async createComment(comment: CommentInput, postId: string) : Promise<CommentOutput | AppError> {
+    async createComment(comment: CommentInput) : Promise<CommentOutput | AppError> {
         try {
-            comment.postId = postId
-            return await commentRepository.create(comment)
+            const createComment = await commentRepository.create(comment);
+            return createComment
         } catch(error:any) {
             handler.reportError(error)
             if (error instanceof AppError) {

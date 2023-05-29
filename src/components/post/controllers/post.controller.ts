@@ -5,10 +5,12 @@ import AppError from "../../../libraries/error"
 import * as transformer from "../transformers/post.transformer"
 import { HttpStatusCode } from "../../../libraries/httpStatusCodes"
 import { CreatePostRequest } from "../schemas/post.schema"
+import { PostInput } from "../models/post.model"
 
 class PostController {
-    async create(payload : CreatePostRequest) : Promise<IResponse> {
-        const result = await postService.createPost(payload)
+    async create(payload : CreatePostRequest, userId: string) : Promise<IResponse> {
+        const postInput : PostInput = {...payload, userId}
+        const result = await postService.createPost(postInput)
         if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.UNSUCCESSFUL_SIGNUP)
 
         return new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, transformer.postResource(result))
