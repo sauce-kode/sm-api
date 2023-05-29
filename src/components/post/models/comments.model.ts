@@ -7,12 +7,13 @@ interface CommentAttributes {
     id: string,
     userId: string,
     postId: string,
+    parentCommentId?: string,
     comment: string,
     created_at?: Date,
     updated_at?: Date,
 }
 
-export interface CommentInput extends Optional<CommentAttributes, 'id'> {}
+export interface CommentInput extends Optional<CommentAttributes, 'id' | 'parentCommentId'> {}
 export interface CommentOutput extends Required<CommentAttributes> {}
 
 class Comment extends Model<CommentAttributes, CommentInput> implements CommentAttributes {
