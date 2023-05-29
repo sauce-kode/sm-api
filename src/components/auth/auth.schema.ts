@@ -17,15 +17,15 @@ export const userRegistrationSchema = z.object({
             required_error: "Enter a secure password",
         })
         .min(6, "Password cannot be less than 6 characters"),
-    // passwordConfirm: z
-    //     .string({
-    //         required_error: "Please confirm your password",
-    //       }),
+    passwordConfirm: z
+        .string({
+            required_error: "Please confirm your password",
+          }),
   })
-//   .refine((data) => data.password === data.passwordConfirm, {
-//     path: ['passwordConfirm'],
-//     message: 'Passwords do not match'
-//   }),
+  .refine((data) => data.password === data.passwordConfirm, {
+    path: ['passwordConfirm'],
+    message: 'Passwords do not match'
+  }),
 });
 
 export const userLoginSchema = z.object({

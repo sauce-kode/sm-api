@@ -5,10 +5,10 @@ import Post from "./post.model"
 
 interface CommentAttributes {
     id: string,
-    userId: string,
+    userId?: string,
     postId: string,
-    parentCommentId?: string,
     comment: string,
+    parentCommentId?: string,
     created_at?: Date,
     updated_at?: Date,
 }
@@ -21,6 +21,7 @@ class Comment extends Model<CommentAttributes, CommentInput> implements CommentA
     public userId: string
     public postId: string
     public comment: string
+    public parentCommentId: string
 
     // timestamp
     public readonly created_at!: Date
@@ -49,6 +50,14 @@ Comment.init({
             key: 'id'
         }
     },
+    parentCommentId: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+            model: Comment,
+            key: 'id'
+        }
+    },
     comment: {
         type: DataTypes.TEXT(),
         allowNull: true
@@ -63,4 +72,4 @@ Comment.init({
 Comment.belongsTo(User)
 Comment.belongsTo(Post)
 
-export default Post
+export default Comment
