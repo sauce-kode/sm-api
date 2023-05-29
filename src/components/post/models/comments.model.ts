@@ -56,7 +56,6 @@ Comment.init({
 }, {
     sequelize: sequelizeConnection,
     tableName: "post_comments",
-    paranoid: true, //set soft deletes for data
     createdAt: 'created_at',
     updatedAt: 'updated_at',
 })
