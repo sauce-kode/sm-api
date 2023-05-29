@@ -24,7 +24,7 @@ class UserController {
 
         if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.DEFAULT_ERROR)
 
-        return new SuccessResponse(Status.SUCCESS, HttpStatusCode.OK, {})
+        return new SuccessResponse(Status.SUCCESS, HttpStatusCode.NO_CONTENT, {})
     }
 }
 

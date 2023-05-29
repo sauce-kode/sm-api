@@ -4,14 +4,9 @@ import { LikeInput } from "../models/likes.model";
 import likeRepository from "../repositories/like.repository";
 
 class LikeService {
-
-    async createLike(userId: string, postId: string) {
+    async createLike(payload : LikeInput) {
         try {
-            const likePayload : LikeInput = {
-                userId: userId,
-                postId: postId
-            }
-            return await likeRepository.create(likePayload)
+            return await likeRepository.create(payload)
         } catch(error:any) {
             handler.reportError(error)
             if (error instanceof AppError) {
@@ -20,6 +15,19 @@ class LikeService {
             throw error
         }
     }
+    
+    async deleteLike(payload : LikeInput) {
+        try {
+            return await likeRepository.delete(payload)
+        } catch(error:any) {
+            handler.reportError(error)
+            if (error instanceof AppError) {
+                return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
+            }
+            throw error
+        }
+    }
+
 }
 
 export default new LikeService()

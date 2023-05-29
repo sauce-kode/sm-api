@@ -35,8 +35,16 @@ router
     .route("/:postId/like")
     .post(async (req: Request<LikeCommentRequest['params'], {}, CreateCommentRequest['body']>, res: Response) => {
         const postId = String(req.params.postId)
-        const userId = String(res.locals.userId)
+        const userId = String(res.locals.user.id)
+
         const result = await likeController.create(userId, postId)
+        handleResponse(res, result)
+    })
+    .delete(async (req: Request<LikeCommentRequest['params'], {}, CreateCommentRequest['body']>, res: Response) => {
+        const postId = String(req.params.postId)
+        const userId = String(res.locals.user.id)
+
+        const result = await likeController.delete(userId, postId)
         handleResponse(res, result)
     })
 

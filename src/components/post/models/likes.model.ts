@@ -53,7 +53,11 @@ PostLike.init({
     updatedAt: 'updated_at',
 })
 
-PostLike.belongsTo(User)
-PostLike.belongsTo(Post)
+PostLike.belongsTo(User, {
+    foreignKey: 'userId'
+})
+PostLike.belongsTo(Post, {
+    foreignKey: 'postId'
+})
 
 export default PostLike
