@@ -6,8 +6,6 @@ interface PostResponse {
     author?: string,
     title: string,
     content: string,
-    likeCount: number,
-    commentCount: number,
     
     createdAt: Date,
     updatedAt: Date,
@@ -21,8 +19,6 @@ export const postResource = (post: PostOutput) : PostResponse => {
         author: post.author,
         title: post.title,
         content: post.content,
-        likeCount: post.likeCount,
-        commentCount: post.commentCount,
         
         createdAt: post.createdAt,
         updatedAt: post.updatedAt,

@@ -9,14 +9,12 @@ interface PostAttributes {
     user_id: string,
     title: string,
     content: string,
-    likeCount: number,
-    commentCount: number,
     createdAt?: Date,
     updatedAt?: Date,
     deletedAt?: Date
 }
 
-export interface PostInput extends Optional<PostAttributes, 'id' | 'user_id' | 'likeCount' | 'commentCount'> {}
+export interface PostInput extends Optional<PostAttributes, 'id'> {}
 export interface PostOutput extends Required<PostAttributes> {
     author?: string
 }
@@ -26,8 +24,6 @@ class Post extends Model<PostAttributes, PostInput> implements PostAttributes {
     public user_id: string
     public title: string
     public content: string
-    public likeCount: number
-    public commentCount: number
 
     // timestamp
     public readonly createdAt!: Date
@@ -56,14 +52,6 @@ Post.init({
     content: {
         type: DataTypes.TEXT(),
         allowNull: true
-    },
-    likeCount: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
-    },
-    commentCount: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
     }
 }, {
     sequelize: sequelizeConnection,
