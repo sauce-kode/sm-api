@@ -45,6 +45,18 @@ class PostRepository {
           return posts
     }
 
+    async search(searchQuery: string) : Promise<PostOutput[]> {
+        try {
+            const results = await PostModel.findAll({
+              where: sequelizeConnection.literal(`to_tsvector('english', content) @@ plainto_tsquery('english', '${searchQuery}')`),
+            });
+            return results
+        } catch (error) {
+            console.error('Error performing full-text search:', error);
+            throw error
+        }
+    }
+
 }
 
 export default new PostRepository()

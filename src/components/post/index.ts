@@ -8,6 +8,7 @@ import commentController from './controllers/comment.controller'
 import { LikeCommentRequest } from './schemas/like.schema'
 import likeController from './controllers/like.controller'
 import { IResponse } from '../../libraries/IResponse'
+import searchController from './controllers/search.controller'
 
 const router = express.Router()
 
@@ -55,4 +56,12 @@ router
         handleResponse(res, result)
     })
 
+router
+    .route("/search")
+    .get(async (req: Request<{}, {}, {}>, res: Response) => {
+        const {query} = req.query
+        
+        const result : IResponse = await searchController.get(query as string)
+        handleResponse(res, result)
+    })
 export default router

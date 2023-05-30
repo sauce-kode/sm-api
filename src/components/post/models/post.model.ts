@@ -68,6 +68,13 @@ Post.init({
     tableName: "posts",
     paranoid: true, //set soft deletes for data
     timestamps: true,
+    indexes: [
+        {
+            using: 'gin',
+            fields: [sequelizeConnection.literal('to_tsvector(\'english\', content)')],
+            name: 'posts_content_gin_idx',
+        }
+    ]
 })
 
 Post.belongsTo(User, {
