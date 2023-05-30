@@ -6,9 +6,6 @@ import followerUsersRepository from "./follower.repository";
 class FollowerService {
     async createFollower(data: FollowerInput) : Promise<FollowerOutput | AppError> {
         try {
-            if (data.follower_user_id === data.following_user_id) {
-                return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, "You cannot follow yourself")
-            }
             return await followerUsersRepository.create(data)
         } catch(error:any) {
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)

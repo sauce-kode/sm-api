@@ -10,6 +10,9 @@ class UserController {
 
     async create(payload: FollowUserRequest, followerUserId: string) : Promise<IResponse> {
         const followPayload : FollowerInput = {following_user_id: payload.followingUserId, follower_user_id: followerUserId}
+
+        if (followPayload.follower_user_id == followPayload.following_user_id) return new SuccessResponse(Status.SUCCESS, HttpStatusCode.NO_CONTENT, {})
+
         const result = await followerService.createFollower(followPayload)
 
         if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.DEFAULT_ERROR)
