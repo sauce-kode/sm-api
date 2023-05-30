@@ -1,8 +1,8 @@
 import { Model, Optional } from "sequelize"
 import {sequelizeConnection, DataTypes} from "../../database/postgres"
 import User from "../user/user.model"
-import redisClient from "../../libraries/redis"
 import diff from "microdiff"
+import cache from "../../libraries/cache"
 
 interface PostAttributes {
     id: string,
@@ -83,27 +83,19 @@ Post.init({
             const cacheKey = `post:${postId}`
 
             const postJson = JSON.stringify(post)
-
-            redisClient.set(cacheKey, postJson, {
-                EX: 60 * 60 * 15
-            })
+            cache.addData(cacheKey, postJson)
         },
         afterUpdate(updatedPost, options) {
-
             const postId = updatedPost.id
             const cacheKey = `post:${postId}`
 
-            const getPost = redisClient.get(cacheKey)
+            const oldPost = cache.getData(cacheKey)
             
-            if (!getPost) return
-
-            const oldPost = getPost
+            if (!oldPost) return
 
             const instanceDiff = diff(oldPost, updatedPost)
             if (instanceDiff.length > 0) {
-                redisClient.set(cacheKey, JSON.stringify(updatedPost), {
-                    EX: 60 * 60 * 60
-                })
+                cache.addData(cacheKey, JSON.stringify(updatedPost))
             }
         }
     }

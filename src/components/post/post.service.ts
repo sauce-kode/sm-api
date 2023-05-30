@@ -1,3 +1,4 @@
+import cache from "../../libraries/cache";
 import AppError, { handler } from "../../libraries/error";
 import { HttpStatusCode } from "../../libraries/httpStatusCodes";
 import { PostInput, PostOutput } from "./post.model";
@@ -26,7 +27,9 @@ class PostService {
     }
 
     async findPost(id:string) : Promise<PostOutput> {
-        return postRepository.findById(id)
+        const post = await postRepository.findById(id)
+        cache.addData(`post:${post.id}`, JSON.stringify(post))
+        return post
     }
 
     async searchPosts(searchQuery: string) : Promise<PostOutput[]>  {
