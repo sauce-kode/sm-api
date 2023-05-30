@@ -1,4 +1,4 @@
-import LikeModel, { LikeInput } from "../models/likes.model";
+import LikeModel, { LikeInput } from "./likes.model";
 
 class LikeRepository {
     async create(payload: LikeInput) {
@@ -11,7 +11,7 @@ class LikeRepository {
 
     async delete(payload:LikeInput) : Promise<boolean> {
         try {
-            const deletedLikeCount = await LikeModel.destroy({where: {userId: payload.userId, postId: payload.postId}})
+            const deletedLikeCount = await LikeModel.destroy({where: {user_id: payload.user_id, post_id: payload.post_id}})
             return !!deletedLikeCount
         } catch (error) {
             throw error

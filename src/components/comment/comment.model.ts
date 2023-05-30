@@ -1,7 +1,7 @@
 import { Model, Optional } from "sequelize"
-import {sequelizeConnection, DataTypes} from "../../../database/postgres"
-import User from "../../user/models/user.model"
-import Post from "./post.model"
+import {sequelizeConnection, DataTypes} from "../../database/postgres"
+import User from "../user/models/user.model"
+import Post from "../post/post.model"
 
 interface CommentAttributes {
     id: string,
@@ -21,7 +21,7 @@ class Comment extends Model<CommentAttributes, CommentInput> implements CommentA
     public user_id: string
     public post_id: string
     public comment: string
-    public parentCommentId: string
+    public parent_comment_id: string
 
     // timestamp
     public readonly createdAt!: Date

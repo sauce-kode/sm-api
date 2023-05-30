@@ -1,7 +1,7 @@
-import AppError, { handler } from "../../../libraries/error";
-import { HttpStatusCode } from "../../../libraries/httpStatusCodes";
-import { PostInput, PostOutput } from "../models/post.model";
-import postRepository from "../repositories/post.repository";
+import AppError, { handler } from "../../libraries/error";
+import { HttpStatusCode } from "../../libraries/httpStatusCodes";
+import { PostInput, PostOutput } from "./post.model";
+import postRepository from "./post.repository";
 
 class PostService {
 

@@ -1,7 +1,7 @@
-import AppError, { handler } from "../../../libraries/error";
-import { HttpStatusCode } from "../../../libraries/httpStatusCodes";
-import { LikeInput } from "../models/likes.model";
-import likeRepository from "../repositories/like.repository";
+import AppError, { handler } from "../../libraries/error";
+import { HttpStatusCode } from "../../libraries/httpStatusCodes";
+import { LikeInput } from "./likes.model";
+import likeRepository from "./like.repository";
 
 class LikeService {
     async createLike(payload : LikeInput) {

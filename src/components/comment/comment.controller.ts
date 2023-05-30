@@ -1,12 +1,12 @@
-import { ErrorResponse, FailResponse, IResponse, Status, SuccessResponse } from "../../../libraries/IResponse"
-import { CommonErrors } from "../../../libraries/commonErrors"
-import AppError from "../../../libraries/error"
-import { HttpStatusCode } from "../../../libraries/httpStatusCodes"
-import { CommentInput } from "../models/comment.model"
-import { CreateCommentRequest } from "../schemas/comment.schema"
-import commentService from "../services/comment.service"
-import postService from "../services/post.service"
-import * as transformer from "../transformers/comment.transformer"
+import { ErrorResponse, FailResponse, IResponse, Status, SuccessResponse } from "../../libraries/IResponse"
+import { CommonErrors } from "../../libraries/commonErrors"
+import AppError from "../../libraries/error"
+import { HttpStatusCode } from "../../libraries/httpStatusCodes"
+import { CommentInput } from "./comment.model"
+import { CreateCommentRequest } from "./comment.schema"
+import commentService from "./comment.service"
+import postService from "../post/post.service"
+import * as transformer from "./comment.transformer"
 
 class CommentController {
     async create(payload : CreateCommentRequest['body'], userId: string, postId: string) : Promise<IResponse> {

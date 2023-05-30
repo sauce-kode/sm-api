@@ -1,7 +1,7 @@
-import PostModel, { PostInput, PostOutput } from "../models/post.model";
-import { sequelizeConnection } from "../../../database/postgres";
+import PostModel, { PostInput, PostOutput } from "./post.model";
+import { sequelizeConnection } from "../../database/postgres";
 import { Op } from "sequelize";
-import User from "../../user/models/user.model";
+import User from "../user/models/user.model";
 
 class PostRepository {
     async create(payload: PostInput) : Promise<PostOutput> {

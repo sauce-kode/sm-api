@@ -1,4 +1,4 @@
-import { CommentOutput } from "../models/comment.model"
+import { CommentOutput } from "./comment.model"
 
 interface CommentResponse {
     id: string,
@@ -12,10 +12,10 @@ interface CommentResponse {
 export const commentResource = (comment: CommentOutput) : CommentResponse => {
     return {
         id: comment.id,
-        userId: comment.userId,
+        userId: comment.user_id,
         comment: comment.comment,
         
-        created_at: comment.created_at,
-        updated_at: comment.updated_at,
+        created_at: comment.createdAt,
+        updated_at: comment.updatedAt,
     }
 }

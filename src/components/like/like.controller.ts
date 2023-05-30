@@ -1,10 +1,10 @@
-import { ErrorResponse, FailResponse, IResponse, Status, SuccessResponse } from "../../../libraries/IResponse"
-import { CommonErrors } from "../../../libraries/commonErrors"
-import AppError from "../../../libraries/error"
-import { HttpStatusCode } from "../../../libraries/httpStatusCodes"
-import { LikeInput } from "../models/likes.model";
-import likeService from "../services/like.service";
-import postService from "../services/post.service";
+import { ErrorResponse, FailResponse, IResponse, Status, SuccessResponse } from "../../libraries/IResponse"
+import { CommonErrors } from "../../libraries/commonErrors"
+import AppError from "../../libraries/error"
+import { HttpStatusCode } from "../../libraries/httpStatusCodes"
+import { LikeInput } from "./likes.model";
+import likeService from "./like.service";
+import postService from "../post/post.service";
 
 class LikeController {
     async create(userId : string, postId: string) : Promise<IResponse> {

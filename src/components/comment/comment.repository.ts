@@ -1,4 +1,4 @@
-import CommentModel, { CommentInput, CommentOutput } from "../models/comment.model"
+import CommentModel, { CommentInput, CommentOutput } from "./comment.model"
 
 class CommmentRepository {
     async create(payload: CommentInput) : Promise<CommentOutput> {

@@ -1,9 +1,9 @@
-import { sequelizeConnection } from "../../../database/postgres";
-import AppError, { handler } from "../../../libraries/error";
-import { HttpStatusCode } from "../../../libraries/httpStatusCodes";
-import { CommentInput, CommentOutput } from "../models/comment.model";
-import commentRepository from "../repositories/comment.repository";
-import postService from "./post.service";
+import { sequelizeConnection } from "../../database/postgres";
+import AppError, { handler } from "../../libraries/error";
+import { HttpStatusCode } from "../../libraries/httpStatusCodes";
+import { CommentInput, CommentOutput } from "./comment.model";
+import commentRepository from "./comment.repository";
+import postService from "../post/post.service";
 
 class CommentService {
 

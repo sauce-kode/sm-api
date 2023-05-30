@@ -1,14 +1,14 @@
 import express, {Request, Response} from 'express'
 import { validate } from '../../middleware/validate'
 import { handleResponse } from '..'
-import postController from './controllers/post.controller'
-import { CreatePostRequest, CreatePostSchema } from './schemas/post.schema'
-import { CreateCommentRequest, CreateCommentSchema } from './schemas/comment.schema'
-import commentController from './controllers/comment.controller'
-import { LikeCommentRequest } from './schemas/like.schema'
-import likeController from './controllers/like.controller'
+import postController from './post.controller'
+import { CreatePostRequest, CreatePostSchema } from './post.schema'
+import { CreateCommentRequest, CreateCommentSchema } from '../comment/comment.schema'
+import commentController from '../comment/comment.controller'
+import { LikeCommentRequest } from '../like/like.schema'
+import likeController from '../like/like.controller'
 import { IResponse } from '../../libraries/IResponse'
-import searchController from './controllers/search.controller'
+import searchController from '../search/search.controller'
 
 const router = express.Router()
 
