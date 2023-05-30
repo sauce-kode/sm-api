@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { TypeOf, object, string, z } from "zod";
 
 export const CreatePostSchema = z.object({
   body: z.object({
@@ -15,4 +15,16 @@ export const CreatePostSchema = z.object({
   }),
 });
 
-export type CreatePostRequest = z.TypeOf<typeof CreatePostSchema>["body"];
+const params = {
+    params: object({
+        postId: string()
+    })
+}
+
+export const getPostSchema = object({
+    ...params
+})
+
+export type CreatePostRequest = TypeOf<typeof CreatePostSchema>["body"];
+export type GetPostRequest = TypeOf<typeof getPostSchema>['params'];
+

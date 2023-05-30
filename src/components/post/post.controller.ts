@@ -11,7 +11,7 @@ class PostController {
     async create(payload : CreatePostRequest, userId: string) : Promise<IResponse> {
         const postInput : PostInput = {...payload, user_id: userId}
         const result = await postService.createPost(postInput)
-        if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.UNSUCCESSFUL_SIGNUP)
+        if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.DEFAULT_ERROR)
 
         return new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, transformer.postResource(result))
     }
@@ -19,6 +19,11 @@ class PostController {
     async get(userId: string) : Promise<IResponse> {
         const result = await postService.getPosts(userId)
         return new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, result.map(transformer.postResource))
+    }
+
+    async find(postId: string, userId:string) : Promise<IResponse> {
+        const result = await postService.findPost(postId)
+        return new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, transformer.postResource(result))
     }
     
 }

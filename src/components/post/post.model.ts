@@ -85,10 +85,11 @@ Post.init({
             const postJson = JSON.stringify(post)
 
             redisClient.set(cacheKey, postJson, {
-                EX: 60 * 60 * 60
+                EX: 60 * 60 * 15
             })
         },
         afterUpdate(updatedPost, options) {
+
             const postId = updatedPost.id
             const cacheKey = `post:${postId}`
 

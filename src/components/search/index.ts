@@ -7,7 +7,7 @@ const router = express.Router()
 
 router
     .route("/search")
-    .get(async (req: Request<{}, {}, {}>, res: Response) => {
+    .get(async (req: Request, res: Response) => {
         const {query} = req.query
         
         const result : IResponse = await searchController.get(query as string)
