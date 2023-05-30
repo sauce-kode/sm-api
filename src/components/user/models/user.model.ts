@@ -6,9 +6,9 @@ interface UserAttributes {
     username: string,
     email: string,
     password: string,
-    created_at?: Date,
-    updated_at?: Date,
-    deleted_at?: Date
+    createdAt?: Date,
+    updatedAt?: Date,
+    deletedAt?: Date
 }
 
 export interface UserInput extends Optional<UserAttributes, 'id'> {}
@@ -21,9 +21,9 @@ class User extends Model<UserAttributes, UserInput> implements UserAttributes {
     public password: string
 
     // timestamp
-    public readonly created_at!: Date
-    public readonly updated_at!: Date
-    public readonly deleted_at!: Date
+    public readonly createdAt!: Date
+    public readonly updatedAt!: Date
+    public readonly deletedAt!: Date
 }
 
 User.init({
@@ -50,9 +50,7 @@ User.init({
     sequelize: sequelizeConnection,
     tableName: "users",
     paranoid: true, //set soft deletes for data
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    deletedAt: 'deleted_at'
+    timestamps: true
 })
 
 export default User

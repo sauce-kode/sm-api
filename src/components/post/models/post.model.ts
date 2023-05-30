@@ -7,15 +7,14 @@ interface PostAttributes {
     userId: string,
     title: string,
     content: string,
-    slug: string,
     likeCount: number,
     commentCount: number,
-    created_at?: Date,
-    updated_at?: Date,
-    deleted_at?: Date
+    createdAt?: Date,
+    updatedAt?: Date,
+    deletedAt?: Date
 }
 
-export interface PostInput extends Optional<PostAttributes, 'id' | 'userId' | 'slug' | 'likeCount' | 'commentCount'> {}
+export interface PostInput extends Optional<PostAttributes, 'id' | 'userId' | 'likeCount' | 'commentCount'> {}
 export interface PostOutput extends Required<PostAttributes> {}
 
 class Post extends Model<PostAttributes, PostInput> implements PostAttributes {
@@ -23,14 +22,13 @@ class Post extends Model<PostAttributes, PostInput> implements PostAttributes {
     public userId: string
     public title: string
     public content: string
-    public slug: string
     public likeCount: number
     public commentCount: number
 
     // timestamp
-    public readonly created_at!: Date
-    public readonly updated_at!: Date
-    public readonly deleted_at!: Date
+    public readonly createdAt!: Date
+    public readonly updatedAt!: Date
+    public readonly deletedAt!: Date
 }
 
 Post.init({
@@ -55,11 +53,6 @@ Post.init({
         type: DataTypes.TEXT(),
         allowNull: true
     },
-    slug: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        unique: true
-    },
     likeCount: {
         type: DataTypes.INTEGER,
         defaultValue: 0
@@ -72,15 +65,7 @@ Post.init({
     sequelize: sequelizeConnection,
     tableName: "posts",
     paranoid: true, //set soft deletes for data
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    deletedAt: 'deleted_at',
-    hooks: {
-        afterCreate: (post, options) => {
-            // console.log("POST >>>", post)
-            // console.log("OPTIONS >>>>>", options)
-        } 
-    }
+    timestamps: true
 })
 
 Post.belongsTo(User, {

@@ -1,10 +1,10 @@
 import AppError from "../../../libraries/error";
 import { HttpStatusCode } from "../../../libraries/httpStatusCodes";
-import { FollowerUserInput, FollowerUserOutput } from "../models/followerUser.model";
-import followerUsersRepository from "../repositories/followerUsers.repository";
+import { FollowerInput, FollowerOutput } from "../models/follower.model";
+import followerUsersRepository from "../repositories/follower.repository";
 
 class FollowerService {
-    async createFollower(data: FollowerUserInput) : Promise<FollowerUserOutput | AppError> {
+    async createFollower(data: FollowerInput) : Promise<FollowerOutput | AppError> {
         try {
             return await followerUsersRepository.create(data)
         } catch(error:any) {
@@ -12,7 +12,7 @@ class FollowerService {
         }
     }
 
-    async deleteFollower(data: FollowerUserInput) : Promise<boolean | AppError> {
+    async deleteFollower(data: FollowerInput) : Promise<boolean | AppError> {
         try {
             return await followerUsersRepository.delete({userId: data.userId, followingId: data.followingId})
         } catch(error:any) {

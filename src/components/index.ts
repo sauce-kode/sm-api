@@ -6,7 +6,6 @@ import post from "./post"
 import user from "./user"
 
 import requireAuthentication from "../middleware/requireAuthentication";
-import { requireUser } from "../middleware/requireUser";
 
 const router = express.Router()
 
@@ -18,9 +17,9 @@ export const handleResponse = function(res: Response<any>, response: Partial<IRe
 
 router.use("/auth", auth)
 
-router.use(requireAuthentication, requireUser)
+router.use(requireAuthentication)
 
-router.use("/post", post)
-router.use("/user", user)
+router.use("/posts", post)
+router.use("/users", user)
 
 export default router

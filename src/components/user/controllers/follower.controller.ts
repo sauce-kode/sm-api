@@ -3,7 +3,7 @@ import { CommonErrors } from "../../../libraries/commonErrors";
 import AppError from "../../../libraries/error";
 import { HttpStatusCode } from "../../../libraries/httpStatusCodes";
 import { FollowUserRequest } from "../follower.schema";
-import { FollowerUserInput } from "../models/followerUser.model";
+import { FollowerUserInput } from "../models/follower.model";
 import followerService from "../services/follower.service";
 
 class UserController {

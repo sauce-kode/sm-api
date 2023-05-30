@@ -16,27 +16,25 @@ const requireAuthentication = async (req: Request, res: Response, next: NextFunc
         }
 
         if (!accessToken) {
-            return handleResponse(res, new FailResponse(Status.FAIL, {}, HttpStatusCode.UNAUTHORIZED, CommonErrors.UNAUTHORIZED  + " No Access Token"))
+            return handleResponse(res, new FailResponse(Status.FAIL, {}, HttpStatusCode.UNAUTHORIZED, CommonErrors.UNAUTHORIZED))
         }
 
         const decodedToken = Token.verifyJwt<{sub: string}>(accessToken)
         if (!decodedToken) {
             handleResponse(res, new FailResponse(Status.FAIL, {}, HttpStatusCode.BAD_REQUEST, CommonErrors.INVALID_TOKEN_TYPE))
         }
-        console.log("DECODED TOKEN >>>> ", decodedToken)
 
         const session = await redisClient.get(decodedToken.sub)
-        console.log("SESSION FOUND >>>> ", session)
 
          if(!session) {
-            return handleResponse(res, new FailResponse(Status.FAIL, {}, HttpStatusCode.UNAUTHORIZED, CommonErrors.UNAUTHORIZED  + " Session not found"))
+            return handleResponse(res, new FailResponse(Status.FAIL, {}, HttpStatusCode.UNAUTHORIZED, CommonErrors.UNAUTHORIZED))
          }
 
         // Ensure user still exists
         const user = await userService.findUserById(JSON.parse(session).id)
 
         if (!user) {
-            return handleResponse(res, new FailResponse(Status.FAIL, {}, HttpStatusCode.UNAUTHORIZED, CommonErrors.UNAUTHORIZED  + " User not found"))
+            return handleResponse(res, new FailResponse(Status.FAIL, {}, HttpStatusCode.UNAUTHORIZED, CommonErrors.UNAUTHORIZED))
         }
 
         res.locals.user = user

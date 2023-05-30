@@ -15,6 +15,11 @@ class PostController {
 
         return new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, transformer.postResource(result))
     }
+
+    async get(page: number = 1, limit: number = 10) {
+        
+    }
+    
 }
 
 export default new PostController()

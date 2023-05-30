@@ -7,6 +7,7 @@ import { CreateCommentRequest, CreateCommentSchema } from './schemas/comment.sch
 import commentController from './controllers/comment.controller'
 import { LikeCommentRequest } from './schemas/like.schema'
 import likeController from './controllers/like.controller'
+import { IResponse } from '../../libraries/IResponse'
 
 const router = express.Router()
 
@@ -16,8 +17,12 @@ router
         const payload : CreatePostRequest = req.body
         const user = res.locals.user.id
 
-        const result = await postController.create(payload, user)
+        const result : IResponse = await postController.create(payload, user)
         handleResponse(res, result)
+    })
+    .get(async (req: Request<{}, {}, {}>, res: Response) => {
+        console.log(req.query)
+        return "Hello"
     })
 
 router
@@ -27,7 +32,7 @@ router
         const postId = String(req.params.postId)
         const user = res.locals.user.id
 
-        const result = await commentController.create(payload, user, postId)
+        const result : IResponse = await commentController.create(payload, user, postId)
         handleResponse(res, result)
     })
 
@@ -37,14 +42,14 @@ router
         const postId = String(req.params.postId)
         const userId = String(res.locals.user.id)
 
-        const result = await likeController.create(userId, postId)
+        const result : IResponse = await likeController.create(userId, postId)
         handleResponse(res, result)
     })
     .delete(async (req: Request<LikeCommentRequest['params'], {}, CreateCommentRequest['body']>, res: Response) => {
         const postId = String(req.params.postId)
         const userId = String(res.locals.user.id)
 
-        const result = await likeController.delete(userId, postId)
+        const result : IResponse = await likeController.delete(userId, postId)
         handleResponse(res, result)
     })
 
