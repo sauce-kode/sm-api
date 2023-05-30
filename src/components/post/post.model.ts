@@ -1,6 +1,8 @@
 import { Model, Optional } from "sequelize"
 import {sequelizeConnection, DataTypes} from "../../database/postgres"
 import User from "../user/user.model"
+import redisClient from "../../libraries/redis"
+import diff from "microdiff"
 
 interface PostAttributes {
     id: string,
@@ -74,7 +76,36 @@ Post.init({
             fields: [sequelizeConnection.literal('to_tsvector(\'english\', content)')],
             name: 'posts_content_gin_idx',
         }
-    ]
+    ],
+    hooks: {
+        afterCreate(post, options) {
+            const postId = post.id
+            const cacheKey = `post:${postId}`
+
+            const postJson = JSON.stringify(post)
+
+            redisClient.set(cacheKey, postJson, {
+                EX: 60 * 60 * 60
+            })
+        },
+        afterUpdate(updatedPost, options) {
+            const postId = updatedPost.id
+            const cacheKey = `post:${postId}`
+
+            const getPost = redisClient.get(cacheKey)
+            
+            if (!getPost) return
+
+            const oldPost = getPost
+
+            const instanceDiff = diff(oldPost, updatedPost)
+            if (instanceDiff.length > 0) {
+                redisClient.set(cacheKey, JSON.stringify(updatedPost), {
+                    EX: 60 * 60 * 60
+                })
+            }
+        }
+    }
 })
 
 Post.belongsTo(User, {
