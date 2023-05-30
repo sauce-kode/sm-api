@@ -1,7 +1,7 @@
 import customConfig from "../../config/default";
 import redisClient from "../../libraries/redis";
 import Token from "../../libraries/token";
-import { UserOutput } from "../user/models/user.model";
+import { UserOutput } from "../user/user.model";
 
 class AuthService {
 

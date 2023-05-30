@@ -1,9 +1,9 @@
-import { CommonErrors } from "../../../libraries/commonErrors";
-import AppError, { handler } from "../../../libraries/error";
-import { HttpStatusCode } from "../../../libraries/httpStatusCodes";
-import Utils from "../../../libraries/utils";
-import { UserInput, UserOutput } from "../models/user.model";
-import userRepository from "../repositories/user.repository";
+import { CommonErrors } from "../../libraries/commonErrors";
+import AppError, { handler } from "../../libraries/error";
+import { HttpStatusCode } from "../../libraries/httpStatusCodes";
+import Utils from "../../libraries/utils";
+import { UserInput, UserOutput } from "./user.model";
+import userRepository from "./user.repository";
 
 class UserService {
 

@@ -1,8 +1,8 @@
 import express, {Request, Response} from 'express'
 import { validate } from '../../middleware/validate'
-import { FollowUserRequest, followUserSchema } from './follower.schema'
+import { FollowUserRequest, followUserSchema } from '../follower/follower.schema'
 import { handleResponse } from '..'
-import followerController from './controllers/follower.controller'
+import followerController from '../follower/follower.controller'
 
 const router = express.Router()
 

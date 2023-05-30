@@ -1,7 +1,7 @@
-import AppError from "../../../libraries/error";
-import { HttpStatusCode } from "../../../libraries/httpStatusCodes";
-import { FollowerInput, FollowerOutput } from "../models/follower.model";
-import followerUsersRepository from "../repositories/follower.repository";
+import AppError from "../../libraries/error";
+import { HttpStatusCode } from "../../libraries/httpStatusCodes";
+import { FollowerInput, FollowerOutput } from "./follower.model";
+import followerUsersRepository from "./follower.repository";
 
 class FollowerService {
     async createFollower(data: FollowerInput) : Promise<FollowerOutput | AppError> {

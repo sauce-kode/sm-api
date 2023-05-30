@@ -3,7 +3,10 @@ import { IResponse } from "../libraries/IResponse";
 
 import auth from "./auth"
 import post from "./post"
-import user from "./user"
+import follow from "./follower"
+import comment from "./comment"
+import like from "./like"
+import search from "./search"
 
 import requireAuthentication from "../middleware/requireAuthentication";
 
@@ -19,7 +22,10 @@ router.use("/auth", auth)
 
 router.use(requireAuthentication)
 
+router.use("/followers", follow)
 router.use("/posts", post)
-router.use("/users", user)
+router.use("/comments", comment)
+router.use("/likes", like)
+router.use("/search", search)
 
 export default router

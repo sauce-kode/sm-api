@@ -1,5 +1,5 @@
 import { Model, Optional } from "sequelize"
-import { DataTypes, sequelizeConnection } from "../../../database/postgres"
+import { DataTypes, sequelizeConnection } from "../../database/postgres"
 
 interface UserAttributes {
     id: string,

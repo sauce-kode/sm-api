@@ -1,6 +1,6 @@
 import { Model, Optional } from "sequelize"
 import {sequelizeConnection, DataTypes} from "../../database/postgres"
-import User from "../user/models/user.model"
+import User from "../user/user.model"
 
 interface PostAttributes {
     id: string,

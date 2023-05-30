@@ -1,10 +1,10 @@
-import { ErrorResponse, IResponse, Status, SuccessResponse } from "../../../libraries/IResponse";
-import { CommonErrors } from "../../../libraries/commonErrors";
-import AppError from "../../../libraries/error";
-import { HttpStatusCode } from "../../../libraries/httpStatusCodes";
-import { FollowUserRequest } from "../follower.schema";
-import { FollowerInput } from "../models/follower.model";
-import followerService from "../services/follower.service";
+import { ErrorResponse, IResponse, Status, SuccessResponse } from "../../libraries/IResponse";
+import { CommonErrors } from "../../libraries/commonErrors";
+import AppError from "../../libraries/error";
+import { HttpStatusCode } from "../../libraries/httpStatusCodes";
+import { FollowUserRequest } from "./follower.schema";
+import { FollowerInput } from "./follower.model";
+import followerService from "./follower.service";
 
 class UserController {
 

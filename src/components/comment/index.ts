@@ -17,3 +17,5 @@ router
         const result : IResponse = await commentController.create(payload, user, postId)
         handleResponse(res, result)
     })
+
+export default router

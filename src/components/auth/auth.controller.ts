@@ -1,4 +1,4 @@
-import userService from "../user/services/user.service"
+import userService from "../user/user.service"
 import { ErrorResponse, FailResponse, IResponse, Status, SuccessResponse } from "../../libraries/IResponse"
 import { CommonErrors } from "../../libraries/commonErrors"
 import AppError from "../../libraries/error"

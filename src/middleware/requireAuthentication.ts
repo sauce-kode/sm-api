@@ -4,7 +4,7 @@ import { FailResponse, Status } from "../libraries/IResponse";
 import { HttpStatusCode } from "../libraries/httpStatusCodes";
 import { CommonErrors } from "../libraries/commonErrors";
 import Token from "../libraries/token";
-import userService from "../components/user/services/user.service";
+import userService from "../components/user/user.service";
 import redisClient from "../libraries/redis";
 
 const requireAuthentication = async (req: Request, res: Response, next: NextFunction) => {

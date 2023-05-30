@@ -1,4 +1,4 @@
-import UserModel, { UserInput, UserOutput } from "../models/user.model";
+import UserModel, { UserInput, UserOutput } from "./user.model";
 
 class UserRepository {
     async create(payload: UserInput) {

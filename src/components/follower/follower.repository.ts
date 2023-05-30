@@ -1,4 +1,4 @@
-import FollowerModel, { FollowerInput, FollowerOutput } from "../models/follower.model";
+import FollowerModel, { FollowerInput, FollowerOutput } from "./follower.model";
 
 class FollowerRepository {
     async create(payload: FollowerInput) : Promise<FollowerOutput> {

@@ -1,4 +1,4 @@
-import { UserOutput } from "./models/user.model";
+import { UserOutput } from "./user.model";
 
 interface UserResponse {
     id: string,
