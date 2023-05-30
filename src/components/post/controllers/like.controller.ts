@@ -14,7 +14,7 @@ class LikeController {
         if (findPost) {
             if (findPost instanceof AppError) return new ErrorResponse(Status.ERROR, findPost.httpCode, CommonErrors.SERVER_ERROR);
 
-            const likePayload : LikeInput = {userId, postId}
+            const likePayload : LikeInput = {user_id: userId, post_id: postId}
             const result = await likeService.createLike(likePayload)
             if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.UNSUCCESSFUL_SIGNUP)
     
@@ -24,7 +24,7 @@ class LikeController {
     }
 
     async delete(userId : string, postId: string) : Promise<IResponse> {
-        const likePayload : LikeInput = {userId, postId}
+        const likePayload : LikeInput = {user_id: userId, post_id: postId}
         const result = await likeService.deleteLike(likePayload)
         if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.UNSUCCESSFUL_SIGNUP)
 

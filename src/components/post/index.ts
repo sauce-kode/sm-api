@@ -21,8 +21,10 @@ router
         handleResponse(res, result)
     })
     .get(async (req: Request<{}, {}, {}>, res: Response) => {
-        console.log(req.query)
-        return "Hello"
+        const user = res.locals.user.id
+
+        const result : IResponse = await postController.get(user)
+        handleResponse(res, result)
     })
 
 router

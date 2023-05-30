@@ -5,21 +5,21 @@ import Post from "./post.model"
 
 interface CommentAttributes {
     id: string,
-    userId?: string,
-    postId: string,
+    user_id?: string,
+    post_id: string,
     comment: string,
-    parentCommentId?: string,
+    parent_comment_id?: string,
     createdAt?: Date,
     updatedAt?: Date,
 }
 
-export interface CommentInput extends Optional<CommentAttributes, 'id' | 'parentCommentId'> {}
+export interface CommentInput extends Optional<CommentAttributes, 'id' | 'parent_comment_id'> {}
 export interface CommentOutput extends Required<CommentAttributes> {}
 
 class Comment extends Model<CommentAttributes, CommentInput> implements CommentAttributes {
     public id: string
-    public userId: string
-    public postId: string
+    public user_id: string
+    public post_id: string
     public comment: string
     public parentCommentId: string
 
@@ -34,7 +34,7 @@ Comment.init({
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
-    userId: {
+    user_id: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
@@ -42,7 +42,7 @@ Comment.init({
             key: 'id'
         }
     },
-    postId: {
+    post_id: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
@@ -50,7 +50,7 @@ Comment.init({
             key: 'id'
         }
     },
-    parentCommentId: {
+    parent_comment_id: {
         type: DataTypes.UUID,
         allowNull: true,
         references: {
@@ -69,10 +69,10 @@ Comment.init({
 })
 
 Comment.belongsTo(User, {
-    foreignKey: 'userId'
+    foreignKey: 'user_id'
 })
 Comment.belongsTo(Post, {
-    foreignKey: 'postId'
+    foreignKey: 'post_id'
 })
 
 export default Comment

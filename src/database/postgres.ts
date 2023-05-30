@@ -3,7 +3,9 @@ import logger from "../libraries/logger";
 import customConfig from "../config/default";
 
 const POSTGRES_URL = customConfig.dbUri;
-const sequelizeConnection = new Sequelize(POSTGRES_URL);
+const sequelizeConnection = new Sequelize(POSTGRES_URL, {
+  dialect: 'postgres'
+});
 
 async function connectDB() {
   try {

@@ -4,7 +4,7 @@ import User from "../../user/models/user.model"
 
 interface PostAttributes {
     id: string,
-    userId: string,
+    user_id: string,
     title: string,
     content: string,
     likeCount: number,
@@ -14,12 +14,14 @@ interface PostAttributes {
     deletedAt?: Date
 }
 
-export interface PostInput extends Optional<PostAttributes, 'id' | 'userId' | 'likeCount' | 'commentCount'> {}
-export interface PostOutput extends Required<PostAttributes> {}
+export interface PostInput extends Optional<PostAttributes, 'id' | 'user_id' | 'likeCount' | 'commentCount'> {}
+export interface PostOutput extends Required<PostAttributes> {
+    author?: string
+}
 
 class Post extends Model<PostAttributes, PostInput> implements PostAttributes {
     public id: string
-    public userId: string
+    public user_id: string
     public title: string
     public content: string
     public likeCount: number
@@ -37,7 +39,7 @@ Post.init({
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
-    userId: {
+    user_id: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
@@ -65,11 +67,11 @@ Post.init({
     sequelize: sequelizeConnection,
     tableName: "posts",
     paranoid: true, //set soft deletes for data
-    timestamps: true
+    timestamps: true,
 })
 
 Post.belongsTo(User, {
-    foreignKey: 'userId'
+    foreignKey: 'user_id'
 })
 
 export default Post

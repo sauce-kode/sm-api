@@ -17,6 +17,14 @@ class PostService {
         }
     }
 
+    async getPosts(userId: string) : Promise<PostOutput[]> {
+        try {
+            return await postRepository.getAll(userId)
+        } catch (error) {
+            throw error
+        }
+    }
+
     async incrementCommentCount(postId: string) : Promise<PostOutput | AppError> {
         try {
             const post : PostOutput = await postRepository.findById(postId)

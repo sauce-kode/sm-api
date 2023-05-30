@@ -14,7 +14,7 @@ class FollowerService {
 
     async deleteFollower(data: FollowerInput) : Promise<boolean | AppError> {
         try {
-            return await followerUsersRepository.delete({userId: data.userId, followingId: data.followingId})
+            return await followerUsersRepository.delete(data)
         } catch(error:any) {
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, error.message)
         }

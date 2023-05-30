@@ -5,8 +5,8 @@ import Post from "./post.model"
 
 interface PostLikeAttributes {
     id: string,
-    userId: string,
-    postId: string,
+    user_id: string,
+    post_id: string,
     createdAt?: Date,
     updatedAt?: Date,
 }
@@ -15,9 +15,8 @@ export interface LikeInput extends Optional<PostLikeAttributes, 'id'> {}
 
 class PostLike extends Model<PostLikeAttributes, LikeInput> implements PostLikeAttributes {
     public id: string
-    public userId: string
-    public postId: string
-    public PostLike: string
+    public user_id: string
+    public post_id: string
 
     // timestamp
     public readonly createdAt!: Date
@@ -30,7 +29,7 @@ PostLike.init({
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
-    userId: {
+    user_id: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
@@ -38,7 +37,7 @@ PostLike.init({
             key: 'id'
         }
     },
-    postId: {
+    post_id: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
@@ -53,10 +52,10 @@ PostLike.init({
 })
 
 PostLike.belongsTo(User, {
-    foreignKey: 'userId'
+    foreignKey: 'user_id'
 })
 PostLike.belongsTo(Post, {
-    foreignKey: 'postId'
+    foreignKey: 'post_id'
 })
 
 export default PostLike

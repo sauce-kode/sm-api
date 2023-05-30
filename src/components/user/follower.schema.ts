@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const followUserSchema = z.object({
   body: z.object({
-    followingId: z
+    followingUserId: z
         .string()
   })
 });
