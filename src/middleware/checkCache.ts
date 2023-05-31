@@ -12,11 +12,9 @@ const checkCache = async (req: Request, res: Response, next: NextFunction) => {
     const postJson = await cache.getData(cacheKey)
 
     if (postJson) {
-        console.log("IN CACHE")
         const post = JSON.parse(postJson)
         handleResponse(res, new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, transformer.postResource(post)))
     } else {
-        console.log("NOT IN CACHE")
         next()
     }
 };

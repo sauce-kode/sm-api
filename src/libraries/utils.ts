@@ -42,11 +42,6 @@ export default class Utils {
 
     static computePagination(total: number, data: any, page: number, limit: number) {
         const totalPages = total;
-        console.log("TOTAL", total)
-        console.log("TOTAL PAGES", totalPages)
-        console.log("LIMIT", limit)
-        console.log("PAGE", page)
-
 
         const response: Paginate = {
             totalPages: totalPages/limit,

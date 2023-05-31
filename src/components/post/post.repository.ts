@@ -46,7 +46,6 @@ class PostRepository {
             mapToModel: true,
             replacements: { userId, limit, offset },
         });
-        console.log("POSTS", posts)
         return posts
     }
 
