@@ -17,11 +17,37 @@ This project requires that you have the following isntalled on your personal com
 - [Docker](https://www.docker.com/) and [Docker compose](https://docs.docker.com/compose/install/)
 - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) or [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
 
-Clone the project
+Clone the repository
 
 ```sh
-git clone https://github.com/sauce-kode/social-media.git
-cd social-media
+git clone https://github.com/sauce-kode/sm-api.git
+cd sm-api
+```
+
+Install dependencies
+```sh
+Depending on your package manager, run yarn or npm install
+```
+
+Generate JWT keys
+```sh
+ssh keygen -t rsa -b 2048 -m PEM -f private.key
+openssl rsa -in private.key -pubout -outform PEM -out public.key
+```
+
+Generate .env files and fill the necessary data
+```sh
+cp .env.example .env
+cp .env.docker.example .env.docker
+```
+
+Start Docker containers
+```sh
+Start your docker application and run docker-compose up -d
+```
+Start the application server
+```sh
+yarn start or npm run start
 ```
 
 ## Data Model
