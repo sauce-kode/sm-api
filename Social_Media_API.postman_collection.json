@@ -1,0 +1,414 @@
+{
+	"info": {
+		"_postman_id": "e0c93a4d-7d48-4437-a4af-32ddb68a7ac5",
+		"name": "Social Media API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "User Registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"jaimeperkins\",\n    \"email\": \"jaimeperkins@gmail.com\",\n    \"password\": \"asimplepassword\",\n    \"passwordConfirm\": \"asimplepassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Use this endpoint to register a user"
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"jasonperkins@gmail.com\",\n    \"password\": \"asimplepassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Use this endpoint to authenticate a user"
+					},
+					"response": []
+				}
+			],
+			"description": "API endpoints for Authentication"
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Create Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MTg4M2ViNy1mNjlkLTQ1ZjQtODgyNi1kZmQ4YzNkN2IyNGIiLCJpYXQiOjE2ODU0OTIwMDR9.KUC4jVdx3qfvMxsEgEXltIS3-MiTGODfII6aUfLnUfmTtA-chwhzVXAXgs159RKB-KSz9pHrdlCxVjKIFi_adBEH5TOWCyUvD8dSGNdh8kGwhXDAywXsUjpwcsLI92oWoM2Z45YLFcaULYzS94NxisRqdK4v9Hbf2I_j3DwxNfckxVxCUEjh7x8PS5WRrLDsy-CREn7Fa6m44fKgaNi1ny6PzIP7a51k6tFSUFTubYwRJ8Cm9TWCxd0r5StLiv4Hj8Q37avmD9BUYblDYXUa_leFuHfYn6PqMOFqtJ-hCEFQYM4Dm2NXYBtgfdCgF6bBmkQ8SjtTrOrw2TtWxkwq1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Section 1.10.32 of 'de Finibus Bonorum et Malorum', written by Cicero in 45 BC\",\n    \"content\": \"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/posts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts"
+							]
+						},
+						"description": "Use this endpoint to create a post"
+					},
+					"response": []
+				},
+				{
+					"name": "Get posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MTg4M2ViNy1mNjlkLTQ1ZjQtODgyNi1kZmQ4YzNkN2IyNGIiLCJpYXQiOjE2ODU0OTIwMDR9.KUC4jVdx3qfvMxsEgEXltIS3-MiTGODfII6aUfLnUfmTtA-chwhzVXAXgs159RKB-KSz9pHrdlCxVjKIFi_adBEH5TOWCyUvD8dSGNdh8kGwhXDAywXsUjpwcsLI92oWoM2Z45YLFcaULYzS94NxisRqdK4v9Hbf2I_j3DwxNfckxVxCUEjh7x8PS5WRrLDsy-CREn7Fa6m44fKgaNi1ny6PzIP7a51k6tFSUFTubYwRJ8Cm9TWCxd0r5StLiv4Hj8Q37avmD9BUYblDYXUa_leFuHfYn6PqMOFqtJ-hCEFQYM4Dm2NXYBtgfdCgF6bBmkQ8SjtTrOrw2TtWxkwq1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/posts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts"
+							]
+						},
+						"description": "Use this endpoint to get all posts"
+					},
+					"response": []
+				},
+				{
+					"name": "Find post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MTg4M2ViNy1mNjlkLTQ1ZjQtODgyNi1kZmQ4YzNkN2IyNGIiLCJpYXQiOjE2ODU0OTIwMDR9.KUC4jVdx3qfvMxsEgEXltIS3-MiTGODfII6aUfLnUfmTtA-chwhzVXAXgs159RKB-KSz9pHrdlCxVjKIFi_adBEH5TOWCyUvD8dSGNdh8kGwhXDAywXsUjpwcsLI92oWoM2Z45YLFcaULYzS94NxisRqdK4v9Hbf2I_j3DwxNfckxVxCUEjh7x8PS5WRrLDsy-CREn7Fa6m44fKgaNi1ny6PzIP7a51k6tFSUFTubYwRJ8Cm9TWCxd0r5StLiv4Hj8Q37avmD9BUYblDYXUa_leFuHfYn6PqMOFqtJ-hCEFQYM4Dm2NXYBtgfdCgF6bBmkQ8SjtTrOrw2TtWxkwq1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/posts/1c6ebaff-cbcb-4521-881c-1e348a1ef7ae",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								"1c6ebaff-cbcb-4521-881c-1e348a1ef7ae"
+							]
+						},
+						"description": "Use this endpoint to get a single post.\nThe id of the post is to be passed as a url parameter"
+					},
+					"response": []
+				}
+			],
+			"description": "These are endpoints for creating posts.\nThese endpoints are protected and would require that an Authorization header in the form of `Bearer token` is passed. The token is returned as part of the response when a user is logged in."
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MTg4M2ViNy1mNjlkLTQ1ZjQtODgyNi1kZmQ4YzNkN2IyNGIiLCJpYXQiOjE2ODU0OTIwMDR9.KUC4jVdx3qfvMxsEgEXltIS3-MiTGODfII6aUfLnUfmTtA-chwhzVXAXgs159RKB-KSz9pHrdlCxVjKIFi_adBEH5TOWCyUvD8dSGNdh8kGwhXDAywXsUjpwcsLI92oWoM2Z45YLFcaULYzS94NxisRqdK4v9Hbf2I_j3DwxNfckxVxCUEjh7x8PS5WRrLDsy-CREn7Fa6m44fKgaNi1ny6PzIP7a51k6tFSUFTubYwRJ8Cm9TWCxd0r5StLiv4Hj8Q37avmD9BUYblDYXUa_leFuHfYn6PqMOFqtJ-hCEFQYM4Dm2NXYBtgfdCgF6bBmkQ8SjtTrOrw2TtWxkwq1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"postId\": \"1c6ebaff-cbcb-4521-881c-1e348a1ef7ae\",\n    \"comment\": \"Jaime is bikee riding\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/comments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"comments"
+							]
+						},
+						"description": "Use this endpoint to create a comment on a post"
+					},
+					"response": []
+				}
+			],
+			"description": "These are endpoints for commenting on posts.\nThese endpoints are protected and would require that an Authorization header in the form of `Bearer token` is passed. The token is returned as part of the response when a user is logged in."
+		},
+		{
+			"name": "Likes",
+			"item": [
+				{
+					"name": "Like comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MTg4M2ViNy1mNjlkLTQ1ZjQtODgyNi1kZmQ4YzNkN2IyNGIiLCJpYXQiOjE2ODU0OTIwMDR9.KUC4jVdx3qfvMxsEgEXltIS3-MiTGODfII6aUfLnUfmTtA-chwhzVXAXgs159RKB-KSz9pHrdlCxVjKIFi_adBEH5TOWCyUvD8dSGNdh8kGwhXDAywXsUjpwcsLI92oWoM2Z45YLFcaULYzS94NxisRqdK4v9Hbf2I_j3DwxNfckxVxCUEjh7x8PS5WRrLDsy-CREn7Fa6m44fKgaNi1ny6PzIP7a51k6tFSUFTubYwRJ8Cm9TWCxd0r5StLiv4Hj8Q37avmD9BUYblDYXUa_leFuHfYn6PqMOFqtJ-hCEFQYM4Dm2NXYBtgfdCgF6bBmkQ8SjtTrOrw2TtWxkwq1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"postId\": \"1c6ebaff-cbcb-4521-881c-1e348a1ef7ae\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/like",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"like"
+							]
+						},
+						"description": "Use this endpoint to like a post"
+					},
+					"response": []
+				},
+				{
+					"name": "Unlike post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MTg4M2ViNy1mNjlkLTQ1ZjQtODgyNi1kZmQ4YzNkN2IyNGIiLCJpYXQiOjE2ODU0OTIwMDR9.KUC4jVdx3qfvMxsEgEXltIS3-MiTGODfII6aUfLnUfmTtA-chwhzVXAXgs159RKB-KSz9pHrdlCxVjKIFi_adBEH5TOWCyUvD8dSGNdh8kGwhXDAywXsUjpwcsLI92oWoM2Z45YLFcaULYzS94NxisRqdK4v9Hbf2I_j3DwxNfckxVxCUEjh7x8PS5WRrLDsy-CREn7Fa6m44fKgaNi1ny6PzIP7a51k6tFSUFTubYwRJ8Cm9TWCxd0r5StLiv4Hj8Q37avmD9BUYblDYXUa_leFuHfYn6PqMOFqtJ-hCEFQYM4Dm2NXYBtgfdCgF6bBmkQ8SjtTrOrw2TtWxkwq1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"postId\": \"1c6ebaff-cbcb-4521-881c-1e348a1ef7ae\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/like",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"like"
+							]
+						},
+						"description": "Use this endpoint to unlike a post"
+					},
+					"response": []
+				}
+			],
+			"description": "These are endpoints for liking or unliking posts.\nThese endpoints are protected and would require that an Authorization header in the form of `Bearer token` is passed. The token is returned as part of the response when a user is logged in."
+		},
+		{
+			"name": "Follower",
+			"item": [
+				{
+					"name": "Follow user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MTg4M2ViNy1mNjlkLTQ1ZjQtODgyNi1kZmQ4YzNkN2IyNGIiLCJpYXQiOjE2ODU0OTIwMDR9.KUC4jVdx3qfvMxsEgEXltIS3-MiTGODfII6aUfLnUfmTtA-chwhzVXAXgs159RKB-KSz9pHrdlCxVjKIFi_adBEH5TOWCyUvD8dSGNdh8kGwhXDAywXsUjpwcsLI92oWoM2Z45YLFcaULYzS94NxisRqdK4v9Hbf2I_j3DwxNfckxVxCUEjh7x8PS5WRrLDsy-CREn7Fa6m44fKgaNi1ny6PzIP7a51k6tFSUFTubYwRJ8Cm9TWCxd0r5StLiv4Hj8Q37avmD9BUYblDYXUa_leFuHfYn6PqMOFqtJ-hCEFQYM4Dm2NXYBtgfdCgF6bBmkQ8SjtTrOrw2TtWxkwq1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"followingUserId\": \"d7cd6446-ad11-4171-902e-b386a6f2a836\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/follow",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"follow"
+							]
+						},
+						"description": "Use this endpoint to follow a user"
+					},
+					"response": []
+				},
+				{
+					"name": "Unfollow User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MTg4M2ViNy1mNjlkLTQ1ZjQtODgyNi1kZmQ4YzNkN2IyNGIiLCJpYXQiOjE2ODU0OTIwMDR9.KUC4jVdx3qfvMxsEgEXltIS3-MiTGODfII6aUfLnUfmTtA-chwhzVXAXgs159RKB-KSz9pHrdlCxVjKIFi_adBEH5TOWCyUvD8dSGNdh8kGwhXDAywXsUjpwcsLI92oWoM2Z45YLFcaULYzS94NxisRqdK4v9Hbf2I_j3DwxNfckxVxCUEjh7x8PS5WRrLDsy-CREn7Fa6m44fKgaNi1ny6PzIP7a51k6tFSUFTubYwRJ8Cm9TWCxd0r5StLiv4Hj8Q37avmD9BUYblDYXUa_leFuHfYn6PqMOFqtJ-hCEFQYM4Dm2NXYBtgfdCgF6bBmkQ8SjtTrOrw2TtWxkwq1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"followingUserId\": \"d7cd6446-ad11-4171-902e-b386a6f2a836\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/follow",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"follow"
+							]
+						},
+						"description": "Use this endpoint to unfollow a user"
+					},
+					"response": []
+				}
+			],
+			"description": "These are endpoints for following or unfollowing users.\nThese endpoints are protected and would require that an Authorization header in the form of `Bearer token` is passed. The token is returned as part of the response when a user is logged in."
+		},
+		{
+			"name": "Search",
+			"item": [
+				{
+					"name": "Search posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MTg4M2ViNy1mNjlkLTQ1ZjQtODgyNi1kZmQ4YzNkN2IyNGIiLCJpYXQiOjE2ODU0OTIwMDR9.KUC4jVdx3qfvMxsEgEXltIS3-MiTGODfII6aUfLnUfmTtA-chwhzVXAXgs159RKB-KSz9pHrdlCxVjKIFi_adBEH5TOWCyUvD8dSGNdh8kGwhXDAywXsUjpwcsLI92oWoM2Z45YLFcaULYzS94NxisRqdK4v9Hbf2I_j3DwxNfckxVxCUEjh7x8PS5WRrLDsy-CREn7Fa6m44fKgaNi1ny6PzIP7a51k6tFSUFTubYwRJ8Cm9TWCxd0r5StLiv4Hj8Q37avmD9BUYblDYXUa_leFuHfYn6PqMOFqtJ-hCEFQYM4Dm2NXYBtgfdCgF6bBmkQ8SjtTrOrw2TtWxkwq1Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/search?query=Bonorum",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Bonorum"
+								}
+							]
+						},
+						"description": "Use this endpoint to search for posts.\nIt requires that you pass a query parameter in the form `query=value` where value is the query parameter for the post you are searching for."
+					},
+					"response": []
+				}
+			],
+			"description": "This endpoint is for searching posts.\nThis endpoint is protected and would require that an Authorization header in the form of `Bearer token` is passed. The token is returned as part of the response when a user is logged in."
+		}
+	]
+}

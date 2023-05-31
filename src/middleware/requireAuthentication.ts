@@ -4,7 +4,6 @@ import { FailResponse, Status } from "../libraries/IResponse";
 import { HttpStatusCode } from "../libraries/httpStatusCodes";
 import { CommonErrors } from "../libraries/commonErrors";
 import Token from "../libraries/token";
-import userService from "../components/user/user.service";
 import redisClient from "../libraries/redis";
 
 const requireAuthentication = async (req: Request, res: Response, next: NextFunction) => {
@@ -30,14 +29,7 @@ const requireAuthentication = async (req: Request, res: Response, next: NextFunc
             return handleResponse(res, new FailResponse(Status.FAIL, {}, HttpStatusCode.UNAUTHORIZED, CommonErrors.UNAUTHORIZED))
          }
 
-        // Ensure user still exists
-        const user = await userService.findUserById(JSON.parse(session).id)
-
-        if (!user) {
-            return handleResponse(res, new FailResponse(Status.FAIL, {}, HttpStatusCode.UNAUTHORIZED, CommonErrors.UNAUTHORIZED))
-        }
-
-        res.locals.user = user
+        res.locals.user = session
         
         next()
 
