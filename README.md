@@ -35,7 +35,7 @@ ssh keygen -t rsa -b 2048 -m PEM -f private.key
 openssl rsa -in private.key -pubout -outform PEM -out public.key
 ```
 
-Generate .env files and fill the necessary data
+Generate .env files
 ```sh
 cp .env.example .env
 cp .env.docker.example .env.docker
