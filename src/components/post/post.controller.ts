@@ -16,8 +16,8 @@ class PostController {
         return new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, transformer.postResource(result))
     }
 
-    async get(userId: string) : Promise<IResponse> {
-        const result = await postService.getPosts(userId)
+    async get(userId: string, offset:number, limit:number) : Promise<IResponse> {
+        const result = await postService.getPosts(userId, 10, 0)
         return new SuccessResponse(Status.SUCCESS, HttpStatusCode.CREATED, result.map(transformer.postResource))
     }
 

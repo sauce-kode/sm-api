@@ -3,6 +3,14 @@ import AppError, { handler } from "./error";
 import { HttpStatusCode } from "./httpStatusCodes";
 import { CommonErrors } from "./commonErrors";
 
+export interface Paginate {
+    totalPages: number,
+    prevPage: number | null,
+    currentPage: number,
+    nextPage: number | null,
+    data: {[name: string]: any}
+}
+
 export default class Utils {
 
     static async generateSalt() {
@@ -32,9 +40,27 @@ export default class Utils {
         }
     }
 
+    static computePagination(total: number, data: any, page: number, limit: number) {
+        const totalPages = total;
+        console.log("TOTAL", total)
+        console.log("TOTAL PAGES", totalPages)
+        console.log("LIMIT", limit)
+        console.log("PAGE", page)
+
+
+        const response: Paginate = {
+            totalPages: totalPages/limit,
+            currentPage: page,
+            data,
+            prevPage: page - 1 == 0 ? null : page - 1,
+            nextPage: page++
+        }
+        return response;
+    }
+
     static async stringIsEmail(text: string) : Promise<boolean> {
         const regexExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
-        return await regexExp.test(text)
+        return regexExp.test(text)
     }
 
 }

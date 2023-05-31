@@ -7,7 +7,7 @@ import followerController from '../follower/follower.controller'
 const router = express.Router()
 
 router
-    .route("/follow")
+    .route("/")
     .post(validate(followUserSchema),  async (req: Request<{}, {}, FollowUserRequest>, res: Response) => {
         const payload : FollowUserRequest = req.body
         const user = res.locals.user.id

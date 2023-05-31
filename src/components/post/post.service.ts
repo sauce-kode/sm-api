@@ -18,9 +18,9 @@ class PostService {
         }
     }
 
-    async getPosts(userId: string) : Promise<PostOutput[]> {
+    async getPosts(userId: string, limit: number, offset: number) : Promise<PostOutput[]> {
         try {
-            return await postRepository.getAll(userId)
+            return await postRepository.getAll(userId, limit, offset)
         } catch (error) {
             throw error
         }
@@ -30,14 +30,6 @@ class PostService {
         const post = await postRepository.findById(id)
         cache.addData(`post:${post.id}`, JSON.stringify(post))
         return post
-    }
-
-    async searchPosts(searchQuery: string) : Promise<PostOutput[]>  {
-        try {
-            return postRepository.search(searchQuery)
-        } catch (error) {
-            throw error
-        }
     }
 }
 

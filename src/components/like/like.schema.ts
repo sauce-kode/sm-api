@@ -1,13 +1,9 @@
-import { object, string, TypeOf } from "zod";
+import { z } from "zod";
 
-const params = {
-    params: object({
-        postId: string()
-    })
-}
-
-export const LikeCommentSchema = object({
-    ...params
+export const CreateLikeSchema = z.object({
+    body: z.object({
+        postId: z.string()
+    }),
 });
 
-export type LikeCommentRequest = TypeOf<typeof LikeCommentSchema>;
+export type LikePostRequest = z.TypeOf<typeof CreateLikeSchema>["body"];

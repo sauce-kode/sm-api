@@ -1,7 +1,10 @@
 import PostModel, { PostInput, PostOutput } from "./post.model";
 import { sequelizeConnection } from "../../database/postgres";
-import { Op } from "sequelize";
-import User from "../user/user.model";
+
+export interface PaginationResult {
+    rows: PostOutput[]
+    count: number
+}
 
 class PostRepository {
     async create(payload: PostInput) : Promise<PostOutput> {
@@ -28,28 +31,41 @@ class PostRepository {
         return post
     }
 
-    async getAll(userId: string) : Promise<PostOutput[]> {
+    async getAll(userId: string, limit:number, offset:number) : Promise<PostOutput[]> {
         const query = `
             SELECT p.*, u.username as author
             FROM posts p
             LEFT JOIN followers f ON p.user_id = f.following_user_id
             INNER JOIN users u ON p.user_id = u.id or f.follower_user_id = u.id
             WHERE u.id = :userId
-            ORDER BY p.createdAt DESC
+            ORDER BY created_at DESC
+            LIMIT :limit OFFSET :offset
         `;
         const posts = await sequelizeConnection.query(query, {
             model: PostModel,
             mapToModel: true,
-            replacements: { userId },
-          });
-          return posts
+            replacements: { userId, limit, offset },
+        });
+        console.log("POSTS", posts)
+        return posts
     }
 
-    async search(searchQuery: string) : Promise<PostOutput[]> {
+    async search(searchQuery: string, offset:number, limit:number) : Promise<PaginationResult> {
+        const results : PaginationResult = {
+            rows: [],
+            count: 0
+        }
+
         try {
-            const results = await PostModel.findAll({
-              where: sequelizeConnection.literal(`to_tsvector('english', content) @@ plainto_tsquery('english', '${searchQuery}')`),
+            const {count, rows} = await PostModel.findAndCountAll({
+                where: sequelizeConnection.literal(`to_tsvector('english', content) || to_tsvector('english', title) @@ to_tsquery('english', '${searchQuery}')`),
+                order: [['created_at', 'DESC']],
+                offset: offset,
+                limit: limit
             });
+            results.count = count
+            results.rows = rows
+
             return results
         } catch (error) {
             console.error('Error performing full-text search:', error);

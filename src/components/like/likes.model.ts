@@ -7,8 +7,8 @@ interface PostLikeAttributes {
     id: string,
     user_id: string,
     post_id: string,
-    createdAt?: Date,
-    updatedAt?: Date,
+    created_at?: Date,
+    updated_at?: Date,
 }
 
 export interface LikeInput extends Optional<PostLikeAttributes, 'id'> {}
@@ -19,8 +19,8 @@ class PostLike extends Model<PostLikeAttributes, LikeInput> implements PostLikeA
     public post_id: string
 
     // timestamp
-    public readonly createdAt!: Date
-    public readonly updatedAt!: Date
+    public readonly created_at!: Date
+    public readonly updated_at!: Date
 }
 
 PostLike.init({
@@ -48,7 +48,9 @@ PostLike.init({
 }, {
     sequelize: sequelizeConnection,
     tableName: "post_likes",
-    timestamps: true
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
 })
 
 PostLike.belongsTo(User, {

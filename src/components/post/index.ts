@@ -19,8 +19,9 @@ router
     })
     .get(async (req: Request, res: Response) => {
         const user = res.locals.user.id
+        let {page, limit} = req.query
 
-        const result : IResponse = await postController.get(user)
+        const result : IResponse = await postController.get(user, Number(page),  Number(limit))
         handleResponse(res, result)
     })
 

@@ -5,10 +5,10 @@ import User from "../user/user.model"
 interface FollowerAttributes {
     following_user_id: string,
     follower_user_id: string,
-    createdAt?: Date,
+    created_at?: Date,
 }
 
-export interface FollowerInput extends Optional<FollowerAttributes, 'createdAt'> {}
+export interface FollowerInput extends Optional<FollowerAttributes, 'created_at'> {}
 export interface FollowerOutput extends Required<FollowerAttributes> {}
 
 class Follower extends Model<FollowerAttributes, FollowerInput> implements FollowerAttributes {
@@ -16,7 +16,7 @@ class Follower extends Model<FollowerAttributes, FollowerInput> implements Follo
     public following_user_id: string
 
     // timestamp
-    public readonly createdAt!: Date
+    public readonly created_at!: Date
 }
 
 Follower.init({
@@ -37,7 +37,8 @@ Follower.init({
 }, {
     sequelize: sequelizeConnection,
     tableName: "followers",
-    updatedAt: false,
+    createdAt: 'created_at',
+    updatedAt: false
 })
 
 User.belongsToMany(User, {

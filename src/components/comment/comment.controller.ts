@@ -9,13 +9,13 @@ import postService from "../post/post.service"
 import * as transformer from "./comment.transformer"
 
 class CommentController {
-    async create(payload : CreateCommentRequest['body'], userId: string, postId: string) : Promise<IResponse> {
-        const findPost = await postService.findPost(postId);
+    async create(payload : CreateCommentRequest, userId: string) : Promise<IResponse> {
+        const findPost = await postService.findPost(payload.postId);
 
         if (findPost) {
             if (findPost instanceof AppError) return new ErrorResponse(Status.ERROR, findPost.httpCode, CommonErrors.SERVER_ERROR);
 
-            const commentPayload : CommentInput = {...payload, post_id: postId, user_id: userId}
+            const commentPayload : CommentInput = {comment: payload.comment, post_id: payload.postId, user_id: userId}
             const result = await commentService.createComment(commentPayload)
 
             if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, result.message)

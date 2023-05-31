@@ -9,9 +9,9 @@ interface PostAttributes {
     user_id: string,
     title: string,
     content: string,
-    createdAt?: Date,
-    updatedAt?: Date,
-    deletedAt?: Date
+    created_at?: Date,
+    updated_at?: Date,
+    deleted_at?: Date
 }
 
 export interface PostInput extends Optional<PostAttributes, 'id'> {}
@@ -26,9 +26,9 @@ class Post extends Model<PostAttributes, PostInput> implements PostAttributes {
     public content: string
 
     // timestamp
-    public readonly createdAt!: Date
-    public readonly updatedAt!: Date
-    public readonly deletedAt!: Date
+    public readonly created_at!: Date
+    public readonly updated_at!: Date
+    public readonly deleted_at!: Date
 }
 
 Post.init({
@@ -58,11 +58,19 @@ Post.init({
     tableName: "posts",
     paranoid: true, //set soft deletes for data
     timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
     indexes: [
         {
             using: 'gin',
-            fields: [sequelizeConnection.literal('to_tsvector(\'english\', content)')],
+            fields: [sequelizeConnection.literal('to_tsvector(\'english\', content)'), ],
             name: 'posts_content_gin_idx',
+        },
+        {
+            using: 'gin',
+            fields: [sequelizeConnection.literal('to_tsvector(\'english\', title)'), ],
+            name: 'posts_title_gin_idx',
         }
     ],
     hooks: {

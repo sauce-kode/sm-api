@@ -8,13 +8,12 @@ import { IResponse } from '../../libraries/IResponse'
 const router = express.Router()
 
 router
-    .route("/:postId/comment")
-    .post(validate(CreateCommentSchema), async (req: Request<CreateCommentRequest['params'], {}, CreateCommentRequest['body']>, res: Response) => {
-        const payload : CreateCommentRequest['body'] = req.body
-        const postId = String(req.params.postId)
+    .route("/")
+    .post(validate(CreateCommentSchema), async (req: Request<{}, {}, CreateCommentRequest>, res: Response) => {
+        const payload : CreateCommentRequest = req.body
         const user = res.locals.user.id
 
-        const result : IResponse = await commentController.create(payload, user, postId)
+        const result : IResponse = await commentController.create(payload, user)
         handleResponse(res, result)
     })
 

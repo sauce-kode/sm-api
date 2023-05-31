@@ -15,17 +15,17 @@ const router = express.Router()
 export const handleResponse = function(res: Response<any>, response: Partial<IResponse>) {
     let resp = Object.assign({}, response)
     delete resp.httpCode
-    res.status(response.httpCode || 200).send(resp)
+    res.status(response.httpCode || 400).send(resp)
 }
 
 router.use("/auth", auth)
 
 router.use(requireAuthentication)
 
-router.use("/followers", follow)
+router.use("/follow", follow)
 router.use("/posts", post)
-router.use("/comments", comment)
-router.use("/likes", like)
 router.use("/search", search)
+router.use("/comments", comment)
+router.use("/like", like)
 
 export default router

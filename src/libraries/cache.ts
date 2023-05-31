@@ -16,11 +16,11 @@ class RedisCache {
         this.client.set(key, data, {EX: 60 * 60 * 15})
     }
 
-    public updateData(key:string, data:string) :  void {
+    public updated_ata(key:string, data:string) :  void {
         this.client.set(key, data, {EX: 60 * 60 * 15})
     }
 
-    public deleteData(key:string) : void {
+    public deleted_ata(key:string) : void {
         this.client.del(key)
     }
 

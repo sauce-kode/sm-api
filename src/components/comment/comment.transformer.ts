@@ -15,7 +15,7 @@ export const commentResource = (comment: CommentOutput) : CommentResponse => {
         userId: comment.user_id,
         comment: comment.comment,
         
-        created_at: comment.createdAt,
-        updated_at: comment.updatedAt,
+        created_at: comment.created_at,
+        updated_at: comment.updated_at,
     }
 }

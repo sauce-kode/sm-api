@@ -9,8 +9,8 @@ interface CommentAttributes {
     post_id: string,
     comment: string,
     parent_comment_id?: string,
-    createdAt?: Date,
-    updatedAt?: Date,
+    created_at?: Date,
+    updated_at?: Date,
 }
 
 export interface CommentInput extends Optional<CommentAttributes, 'id' | 'parent_comment_id'> {}
@@ -24,8 +24,8 @@ class Comment extends Model<CommentAttributes, CommentInput> implements CommentA
     public parent_comment_id: string
 
     // timestamp
-    public readonly createdAt!: Date
-    public readonly updatedAt!: Date
+    public readonly created_at!: Date
+    public readonly updated_at!: Date
 }
 
 Comment.init({
@@ -65,7 +65,9 @@ Comment.init({
 }, {
     sequelize: sequelizeConnection,
     tableName: "post_comments",
-    timestamps: true
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
 })
 
 Comment.belongsTo(User, {

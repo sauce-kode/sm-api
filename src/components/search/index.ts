@@ -6,11 +6,12 @@ import searchController from '../search/search.controller'
 const router = express.Router()
 
 router
-    .route("/search")
+    .route("/")
     .get(async (req: Request, res: Response) => {
         const {query} = req.query
-        
-        const result : IResponse = await searchController.get(query as string)
+        let {page, limit} = req.query
+
+        const result : IResponse = await searchController.get(query as string, Number(page),  Number(limit))
         handleResponse(res, result)
     })
 export default router

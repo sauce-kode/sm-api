@@ -7,8 +7,8 @@ interface PostResponse {
     title: string,
     content: string,
     
-    createdAt: Date,
-    updatedAt: Date,
+    created_at: Date,
+    updated_at: Date,
     deleted_at?: Date
 }
 
@@ -20,7 +20,7 @@ export const postResource = (post: PostOutput) : PostResponse => {
         title: post.title,
         content: post.content,
         
-        createdAt: post.createdAt,
-        updatedAt: post.updatedAt,
+        created_at: post.created_at,
+        updated_at: post.updated_at,
     }
 }
