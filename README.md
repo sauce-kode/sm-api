@@ -30,6 +30,7 @@ Depending on your package manager, run yarn or npm install
 ```
 
 Generate JWT keys
+### You can skip this step as the public and private keys have been attached, which would not be done in a production environment. However, to generate new ones:
 ```sh
 ssh keygen -t rsa -b 2048 -m PEM -f private.key
 openssl rsa -in private.key -pubout -outform PEM -out public.key
