@@ -30,7 +30,7 @@ class AuthController {
         }
 
         if (response) {
-            if (response instanceof AppError) return new ErrorResponse(Status.ERROR, response.httpCode, CommonErrors.SERVER_ERROR);
+            if (response instanceof AppError) return new ErrorResponse(Status.ERROR, response.httpCode, response.message);
 
             const passwordMatches = await userService.comparePasswords(payload.password, response.password)
 

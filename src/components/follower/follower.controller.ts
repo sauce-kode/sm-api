@@ -1,12 +1,11 @@
 import { ErrorResponse, IResponse, Status, SuccessResponse } from "../../libraries/IResponse";
-import { CommonErrors } from "../../libraries/commonErrors";
 import AppError from "../../libraries/error";
 import { HttpStatusCode } from "../../libraries/httpStatusCodes";
 import { FollowUserRequest } from "./follower.schema";
 import { FollowerInput } from "./follower.model";
 import followerService from "./follower.service";
 
-class UserController {
+class FollowerController {
 
     async create(payload: FollowUserRequest, followerUserId: string) : Promise<IResponse> {
         const followPayload : FollowerInput = {following_user_id: payload.followingUserId, follower_user_id: followerUserId}
@@ -15,7 +14,7 @@ class UserController {
 
         const result = await followerService.createFollower(followPayload)
 
-        if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.DEFAULT_ERROR)
+        if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, result.message)
 
         return new SuccessResponse(Status.SUCCESS, HttpStatusCode.OK, {})
     }
@@ -25,10 +24,10 @@ class UserController {
 
         const result = await followerService.deleteFollower(unfollowPayload)
 
-        if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, CommonErrors.DEFAULT_ERROR)
+        if (result instanceof AppError) return new ErrorResponse(Status.ERROR, result.httpCode, result.message)
 
         return new SuccessResponse(Status.SUCCESS, HttpStatusCode.NO_CONTENT, {})
     }
 }
 
-export default new UserController()
+export default new FollowerController()

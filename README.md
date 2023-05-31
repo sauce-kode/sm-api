@@ -13,7 +13,7 @@ Features implemented:
 - Search (Posts)
 
 ## Installation
-This project requires that you have the following isntalled on your personal computer
+This project requires that you have the following installed on your personal computer
 - [Docker](https://www.docker.com/) and [Docker compose](https://docs.docker.com/compose/install/)
 - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) or [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
 

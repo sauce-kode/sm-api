@@ -13,7 +13,7 @@ class CommentController {
         const findPost = await postService.findPost(payload.postId);
 
         if (findPost) {
-            if (findPost instanceof AppError) return new ErrorResponse(Status.ERROR, findPost.httpCode, CommonErrors.SERVER_ERROR);
+            if (findPost instanceof AppError) return new ErrorResponse(Status.ERROR, findPost.httpCode, findPost.message);
 
             const commentPayload : CommentInput = {comment: payload.comment, post_id: payload.postId, user_id: userId}
             const result = await commentService.createComment(commentPayload)
