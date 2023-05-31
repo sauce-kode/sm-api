@@ -50,6 +50,9 @@ Start the application server
 yarn start or npm run start
 ```
 
+## API Documentation
+[Social Media API Documentation](Social_Media_API.postman_collection.json)
+
 ## Data Model
 The data model used for this project is shown below
 
